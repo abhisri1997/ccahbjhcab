@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/weather.css" />
+  <title>WeatherApp</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="top-section">
+
+      <div class="top-section__overlay">
+
+        <img src="./assets/CityIcons/anadyr.svg" alt="city" class="city-icon" />
+
+        <select name="cities" id="city-select" class="city-selector">
+          <option value="new_delhi">New Delhi</option>
+          <option value="manali">Manali</option>
+          <option value="noida">Noida</option>
+          <option value="shimla">Shimla</option>
+          <option value="greater_noida">Greater Noida</option>
+        </select>
+
+        <div class="temp-container temp-c">
+          <h3>Temp C</h3>
+          <h1>25 C</h1>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="temp-container temp-humidity">
+          <h3>Humidity</h3>
+          <h1>26%</h1>
+        </div>
+
+        <div class="temp-time-range">
+
+          <div class="time">Now</div>
+          <div class="blank"></div>
+          <div class="time">11 AM</div>
+          <div class="blank"></div>
+          <div class="time">12 PM</div>
+          <div class="blank"></div>
+          <div class="time">1 PM</div>
+          <div class="blank"></div>
+          <div class="time">2 PM</div>
+          <div class="blank"></div>
+          <div class="time">3 PM</div>
+
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+          <div class="range-separator">|</div>
+
+          <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="weather-icon" />
+          <div class="blank"></div>
+          <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="weather-icon" />
+          <div class="blank"></div>
+          <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="weather-icon" />
+          <div class="blank"></div>
+          <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="weather-icon" />
+          <div class="blank"></div>
+          <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="weather-icon" />
+          <div class="blank"></div>
+          <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="weather-icon" />
+
+          <h4 class="time-data">6</h4>
+          <div class="blank"></div>
+          <h4 class="time-data">7</h4>
+          <div class="blank"></div>
+          <h4 class="time-data">7</h4>
+          <div class="blank"></div>
+          <h4 class="time-data">8</h4>
+          <div class="blank"></div>
+          <h4 class="time-data">8</h4>
+          <div class="blank"></div>
+          <h4 class="time-data">6</h4>
+
+        </div>
+
+        <div class="blank"></div>
+
+        <div class="date-time">
+
+          <div class="time">
+            <h2>10:10</h2>
+
+            <h3>:44</h3>
+
+            <img src="./assets/Images_Icons/amState.svg" alt="dayState" class="day-night-icon" />
+          </div>
+
+          <div class="date">
+            <h3>01-Mar-2020</h3>
+          </div>
+
+        </div>
+
+        <div class="temp-container temp-f">
+          <h3>Temp F</h3>
+          <h1>76 F</h1>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="temp-container temp-precipitation">
+          <h3>Precipitation</h3>
+          <h1>0%</h1>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bottom-section">
+
+      <div class="bottom-section-wrapper">
+
+        <div class="bottomn-section-status-bar">
+
+          <h3 class="status-bar-title">Top Cities around world</h3>
+
+          <div class="status-bar-icons">
+            <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="icons">
+            <img src="./assets/WeatherIcons/snowflakeIcon.svg" alt="" class="icons">
+            <img src="./assets/WeatherIcons/rainyIcon.svg" alt="" class="icons">
+            <h5>Display Top</h5>
+            <input type="number" min="1" value="1" name="top" id="top-picker" autofocus>
+          </div>
+
+        </div>
+
+        <div class="carousel-container">
+          <div class="card card-1">
+            <div class="card-details">
+              <h2 class="city-name">New Delhi</h2>
+              <h3 class="current-time">10:00 AM</h3>
+              <h3 class="current-date">2-MAR-2020</h3>
+              <div class="card-humidity">
+
+                <img src="./assets/WeatherIcons/humidityIcon.svg" alt="" class="card-icon">
+
+                <h6>53%</h6>
+              </div>
+
+              <div class="card-precipitation">
+
+                <img src="./assets/WeatherIcons/precipitationIcon.svg" alt="" class="card-icon">
+                <h6>10%</h6>
+              </div>
+            </div>
+            <div class="card-temp">
+              <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon">
+              25 C
+            </div>
+          </div>
+          <div class="card card-2">
+            <div class="card-details">
+              <h2 class="city-name">New Delhi</h2>
+              <h3 class="current-time">10:00 AM</h3>
+              <h3 class="current-date">2-MAR-2020</h3>
+              <div class="card-humidity">
+
+                <img src="./assets/WeatherIcons/humidityIcon.svg" alt="" class="card-icon">
+
+                <h6>53%</h6>
+              </div>
+
+              <div class="card-precipitation">
+
+                <img src="./assets/WeatherIcons/precipitationIcon.svg" alt="" class="card-icon">
+                <h6>10%</h6>
+              </div>
+            </div>
+            <div class="card-temp">
+              <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon">
+              25 C
+            </div>
+          </div>
+          <div class="card card-3">
+            <div class="card-details">
+              <h2 class="city-name">New Delhi</h2>
+              <h3 class="current-time">10:00 AM</h3>
+              <h3 class="current-date">2-MAR-2020</h3>
+              <div class="card-humidity">
+
+                <img src="./assets/WeatherIcons/humidityIcon.svg" alt="" class="card-icon">
+
+                <h6>53%</h6>
+              </div>
+
+              <div class="card-precipitation">
+
+                <img src="./assets/WeatherIcons/precipitationIcon.svg" alt="" class="card-icon">
+                <h6>10%</h6>
+              </div>
+            </div>
+            <div class="card-temp">
+              <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon">
+              25 C
+            </div>
+          </div>
+          <div class="card card-4">
+            <div class="card-details">
+              <h2 class="city-name">New Delhi</h2>
+              <h3 class="current-time">10:00 AM</h3>
+              <h3 class="current-date">2-MAR-2020</h3>
+              <div class="card-humidity">
+
+                <img src="./assets/WeatherIcons/humidityIcon.svg" alt="" class="card-icon">
+
+                <h6>53%</h6>
+              </div>
+
+              <div class="card-precipitation">
+
+                <img src="./assets/WeatherIcons/precipitationIcon.svg" alt="" class="card-icon">
+                <h6>10%</h6>
+              </div>
+            </div>
+            <div class="card-temp">
+              <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon">
+              25 C
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
