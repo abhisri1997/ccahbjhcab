@@ -33,6 +33,13 @@ body {
   padding: calc(1.5rem + 1.5625vw) 0 calc(1rem + 1.5625vw) 0;
 }
 
+.icon-city_dropdown {
+  grid-column: span 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
 .city-icon {
   max-width: 86px;
   max-height: auto;
@@ -42,8 +49,6 @@ body {
   padding: 0.6rem 0.8rem;
   border: 0;
   background-color: rgba(131, 131, 131, 0.25);
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 100;
   font-size: calc(1.5rem + 0.390625vw);
   line-height: 2rem;
@@ -234,7 +239,7 @@ body {
   height: auto;
   display: flex;
   background-color: #181818;
-  background-image: url("./assets/CityIcons/kolkata.svg");
+  background-image: url("./../assets/CityIcons/kolkata.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: screen;
