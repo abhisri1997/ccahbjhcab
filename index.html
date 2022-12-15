@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
   <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/weather.css" />
   <title>WeatherApp</title>
 </head>
@@ -16,28 +17,72 @@
 
     <div class="top-section">
 
-      <div class="icon-city_dropdown">
-        <img src="./assets/CityIcons/anadyr.svg" alt="city" class="city-icon" loading="lazy" />
+      <div class="city-temp-details">
 
-        <select name="cities" id="city-select" class="city-selector">
-          <option value="new_delhi">New Delhi</option>
-          <option value="manali">Manali</option>
-          <option value="noida">Noida</option>
-          <option value="shimla">Shimla</option>
-          <option value="greater_noida">Greater Noida</option>
-        </select>
-      </div>
+        <div class="icon-city_dropdown">
 
-      <div class="temp-container temp-c">
-        <h3>Temp C</h3>
-        <h1>25 C</h1>
-      </div>
+          <img src="./assets/CityIcons/anadyr.svg" alt="city" class="city-icon" loading="lazy" />
 
-      <div class="separator"></div>
+          <select name="cities" id="city-select" class="city-selector">
+            <option value="new_delhi">New Delhi</option>
+            <option value="manali">Manali</option>
+            <option value="noida">Noida</option>
+            <option value="shimla">Shimla</option>
+            <option value="greater_noida">Greater Noida</option>
+          </select>
 
-      <div class="temp-container temp-humidity">
-        <h3>Humidity</h3>
-        <h1>26%</h1>
+        </div>
+
+        <div class="temp-container celcius-container">
+
+          <div class="temp-c">
+            <h3>Temp °C</h3>
+            <h1>25 °C</h1>
+          </div>
+
+          <div class="separator"></div>
+
+          <div class="temp-humidity">
+            <h3>Humidity</h3>
+            <h1>26%</h1>
+          </div>
+
+        </div>
+
+        <div class="date-time">
+
+          <div class="time">
+            <h2>10:10</h2>
+
+            <h3>:44</h3>
+
+            <img src="./assets/Images_Icons/amState.svg" alt="dayState" class="day-night-icon" loading="lazy" />
+          </div>
+
+          <div class="date">
+            <h3>01-Mar-2020</h3>
+          </div>
+
+        </div>
+
+
+        <div class="temp-container farenheit-container">
+
+          <div class="temp-f">
+            <h3>Temp F</h3>
+            <h1>76 F</h1>
+          </div>
+
+          <div class="separator"></div>
+
+          <div class="temp-precipitation">
+            <h3>Precipitation</h3>
+            <h1>0%</h1>
+          </div>
+
+        </div>
+
+
       </div>
 
       <div class="temp-time-range">
@@ -92,36 +137,6 @@
 
       </div>
 
-      <div class="blank"></div>
-
-      <div class="date-time">
-
-        <div class="time">
-          <h2>10:10</h2>
-
-          <h3>:44</h3>
-
-          <img src="./assets/Images_Icons/amState.svg" alt="dayState" class="day-night-icon" loading="lazy" />
-        </div>
-
-        <div class="date">
-          <h3>01-Mar-2020</h3>
-        </div>
-
-      </div>
-
-      <div class="temp-container temp-f">
-        <h3>Temp F</h3>
-        <h1>76 F</h1>
-      </div>
-
-      <div class="separator"></div>
-
-      <div class="temp-container temp-precipitation">
-        <h3>Precipitation</h3>
-        <h1>0%</h1>
-      </div>
-
     </div>
 
     <div class="bottom-section">
@@ -163,7 +178,7 @@
             </div>
             <div class="card-temp">
               <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon" loading="lazy">
-              25 C
+              25 °C
             </div>
           </div>
           <div class="card card-2">
@@ -186,7 +201,7 @@
             </div>
             <div class="card-temp">
               <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon" loading="lazy">
-              25 C
+              25 °C
             </div>
           </div>
           <div class="card card-3">
@@ -209,7 +224,7 @@
             </div>
             <div class="card-temp">
               <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon" loading="lazy">
-              25 C
+              25 °C
             </div>
           </div>
           <div class="card card-4">
@@ -232,10 +247,11 @@
             </div>
             <div class="card-temp">
               <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon" loading="lazy">
-              25 C
+              25 °C
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
