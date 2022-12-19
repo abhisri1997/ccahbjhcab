@@ -15,7 +15,7 @@
 <body>
   <div class="container">
 
-    <div class="top-section">
+    <section class="top-section">
 
       <div class="city-temp-details">
 
@@ -137,9 +137,21 @@
 
       </div>
 
-    </div>
+    </section>
 
-    <div class="bottom-section">
+    <section class="bottom-section">
+
+      <div class="left-arrow">
+
+        <img src="./assets/Images_Icons/backwardArrow.svg" alt="back" class="left-icon">
+
+      </div>
+
+      <div class="right-arrow">
+
+        <img src="./assets/Images_Icons/forwardArrow.svg" alt="forward" class="right-icon">
+
+      </div>
 
       <div class="bottom-section-wrapper">
 
@@ -148,16 +160,29 @@
           <h3 class="status-bar-title">Top Cities around world</h3>
 
           <div class="status-bar-icons">
-            <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="icons" loading="lazy">
-            <img src="./assets/WeatherIcons/snowflakeIcon.svg" alt="" class="icons" loading="lazy">
-            <img src="./assets/WeatherIcons/rainyIcon.svg" alt="" class="icons" loading="lazy">
+
+            <a href="#">
+              <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="icons" loading="lazy">
+            </a>
+
+            <a href="#">
+              <img src="./assets/WeatherIcons/snowflakeIcon.svg" alt="" class="icons" loading="lazy">
+            </a>
+
+            <a href="#">
+
+              <img src="./assets/WeatherIcons/rainyIcon.svg" alt="" class="icons" loading="lazy">
+
+            </a>
+
             <h5>Display Top</h5>
-            <input type="number" min="1" value="1" name="top" id="top-picker" autofocus>
+            <input type="number" min="3" value="4" max="10" name="top" id="top-picker" autofocus>
           </div>
 
         </div>
 
         <div class="carousel-container">
+
           <div class="card card-1">
             <div class="card-details">
               <h2 class="city-name">New Delhi</h2>
@@ -597,7 +622,7 @@
         </div>
 
       </div>
-    </div>
+    </section>
 
   </div>
 </body>

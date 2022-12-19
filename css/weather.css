@@ -182,6 +182,7 @@ body {
 
 .bottom-section {
   background-color: black;
+  position: relative;
   border-top-left-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
 }
@@ -192,6 +193,7 @@ body {
   gap: 1.5rem;
   margin: 0 auto;
   padding: 1.5rem 0;
+
   grid-template-rows: auto auto auto;
 }
 
@@ -233,12 +235,32 @@ body {
   max-width: 10%;
   background-color: transparent;
   color: #ffffff;
+  box-shadow: 0 0 1px 0 currentColor;
 }
 
 .carousel-container {
   color: white;
   gap: 1rem;
   display: flex;
+  justify-content: space-evenly;
+}
+
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  top: 22%;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  width: 1.3rem;
+  cursor: pointer;
+}
+
+.left-arrow {
+  left: 8%;
+}
+
+.right-arrow {
+  right: 8%;
 }
 
 .card {
@@ -293,6 +315,7 @@ body {
 .title-continent {
   justify-content: space-between;
   align-items: center;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -302,7 +325,7 @@ body {
 }
 
 .sort-icon {
-  width: 15px;
+  width: 1rem;
 }
 
 .continent-temp-data {
@@ -365,7 +388,7 @@ body {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .top-section {
     grid-template-columns: auto;
     grid-template-rows: auto auto;
@@ -373,5 +396,14 @@ body {
 
   .card {
     flex-wrap: wrap;
+  }
+
+  .card-3,
+  .card-4 {
+    display: none;
+  }
+
+  .continent-temp-data {
+    grid-template-columns: auto auto;
   }
 }
