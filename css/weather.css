@@ -1,7 +1,7 @@
 html {
   font-family: "Roboto";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: calc(15px + 0.390625vw);
 }
 
@@ -54,7 +54,7 @@ body {
   padding: 0.6rem 0.8rem;
   border: 0;
   background-color: rgba(131, 131, 131, 0.25);
-  font-weight: 100;
+  font-weight: 200;
   font-size: calc(1.5rem + 0.390625vw);
   line-height: 2rem;
   color: whitesmoke;
@@ -80,8 +80,6 @@ body {
 }
 
 .time > h2 {
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 700;
   font-size: clamp(0.8rem, calc(1rem + 1.2vw), 1.8rem);
   line-height: 2.2rem;
@@ -131,20 +129,16 @@ body {
   align-content: center;
 }
 
-.time {
+.forecast-time {
   text-align: center;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 300;
+  font-weight: 200;
   font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
   line-height: 1.5rem;
   color: #ffffff;
 }
 
 .time-data {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
+  font-weight: 200;
   font-size: clamp(0.5rem, calc(1rem + 1vw), 1.4rem);
   line-height: 1.6rem;
   color: #ffffff;
@@ -163,7 +157,7 @@ body {
 }
 
 .temp-container h3 {
-  font-weight: 700;
+  font-weight: 300;
   font-size: 0.8rem;
   line-height: 2rem;
   color: #ffffff;
@@ -174,7 +168,7 @@ body {
 }
 
 .temp-container h1 {
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
   line-height: 1rem;
   color: #ffffff;
@@ -220,6 +214,30 @@ body {
   flex-wrap: wrap;
   justify-content: end;
   align-items: center;
+}
+
+.preference-icon {
+  position: relative;
+}
+
+.icons::after {
+  content: "";
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background-color: skyblue;
+}
+
+.preference-icon:hover .icons::after {
+  width: 100%;
+  left: 0;
+}
+
+.active .icons::after {
+  width: 100%;
+  left: 0;
 }
 
 .status-bar-icons > h5 {

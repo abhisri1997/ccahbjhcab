@@ -5,7 +5,11 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./css/normalize.css" />
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/weather.css" />
@@ -87,17 +91,17 @@
 
       <div class="temp-time-range">
 
-        <div class="time">Now</div>
+        <div class="forecast-time">Now</div>
         <div class="blank"></div>
-        <div class="time">11 AM</div>
+        <div class="forecast-time">11 AM</div>
         <div class="blank"></div>
-        <div class="time">12 PM</div>
+        <div class="forecast-time">12 PM</div>
         <div class="blank"></div>
-        <div class="time">1 PM</div>
+        <div class="forecast-time">1 PM</div>
         <div class="blank"></div>
-        <div class="time">2 PM</div>
+        <div class="forecast-time">2 PM</div>
         <div class="blank"></div>
-        <div class="time">3 PM</div>
+        <div class="forecast-time">3 PM</div>
 
         <div class="range-separator">|</div>
         <div class="range-separator">|</div>
@@ -161,19 +165,31 @@
 
           <div class="status-bar-icons">
 
-            <a href="#">
-              <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="icons" loading="lazy">
-            </a>
+            <div class="preference-icon active">
 
-            <a href="#">
-              <img src="./assets/WeatherIcons/snowflakeIcon.svg" alt="" class="icons" loading="lazy">
-            </a>
+              <a href="#" class="icons">
+                <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="" loading="lazy">
+              </a>
 
-            <a href="#">
+            </div>
 
-              <img src="./assets/WeatherIcons/rainyIcon.svg" alt="" class="icons" loading="lazy">
+            <div class="preference-icon">
 
-            </a>
+              <a href="#" class="icons">
+                <img src="./assets/WeatherIcons/snowflakeIcon.svg" alt="" class="" loading="lazy">
+              </a>
+
+            </div>
+
+            <div class="preference-icon">
+
+              <a href="#" class="icons">
+                <img src="./assets/WeatherIcons/rainyIcon.svg" alt="" class="" loading="lazy">
+              </a>
+
+            </div>
+
+
 
             <h5>Display Top</h5>
             <input type="number" min="3" value="4" max="10" name="top" id="top-picker" autofocus>
