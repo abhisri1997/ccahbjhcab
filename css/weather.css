@@ -1,0 +1,427 @@
+html {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(15px + 0.390625vw);
+}
+
+body {
+  letter-spacing: 1.5px;
+}
+
+.container {
+  background-image: url(./../assets/Images_Icons/background.svg);
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+}
+
+.top-section {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1rem;
+  padding: calc(1.5rem + 1.5625vw) 0 calc(1rem + 1.5625vw) 0;
+}
+
+.city-temp-details {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1rem;
+}
+
+.temp-container {
+  display: flex;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  gap: 1rem;
+}
+
+.icon-city_dropdown {
+  /* grid-column: span 2; */
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.city-icon {
+  max-width: 86px;
+  max-height: auto;
+}
+
+.city-selector {
+  padding: 0.6rem 0.8rem;
+  border: 0;
+  background-color: rgba(131, 131, 131, 0.25);
+  font-weight: 200;
+  font-size: calc(1.5rem + 0.390625vw);
+  line-height: 2rem;
+  color: whitesmoke;
+}
+
+.date-time {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: transparent;
+  justify-self: center;
+}
+
+.time {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.time > * {
+  margin: 0;
+  letter-spacing: 0.1rem;
+}
+
+.time > h2 {
+  font-weight: 700;
+  font-size: clamp(0.8rem, calc(1rem + 1.2vw), 1.8rem);
+  line-height: 2.2rem;
+  color: #ffe5b4;
+}
+
+.time > h3 {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
+  line-height: 1.8rem;
+  color: #ffe5b4;
+}
+
+.date > h3 {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(1.2rem + 0.5vw);
+  line-height: 2rem;
+  color: #f1f1f1;
+  margin: 0;
+}
+
+.day-night-icon {
+  max-width: 75px;
+  color: #ffe5b4;
+  margin-left: 0.6rem;
+}
+
+.separator {
+  /* width: 1px; */
+  justify-self: center;
+  height: calc(2vh + 4.8rem);
+  border: 0.5px solid rgba(255, 255, 255, 0.5);
+}
+
+.temp-time-range {
+  grid-row: span 2;
+  display: grid;
+  grid-template-columns: repeat(11, auto);
+  /* grid-template-rows: repeat(4, 20%); */
+  gap: 1rem;
+  justify-items: center;
+
+  align-content: center;
+}
+
+.forecast-time {
+  text-align: center;
+  font-weight: 200;
+  font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
+  line-height: 1.5rem;
+  color: #ffffff;
+}
+
+.time-data {
+  font-weight: 200;
+  font-size: clamp(0.5rem, calc(1rem + 1vw), 1.4rem);
+  line-height: 1.6rem;
+  color: #ffffff;
+  align-self: center;
+}
+
+.range-separator {
+  color: #f1f1f1;
+}
+
+.temp-c,
+.temp-f,
+.temp-humidity,
+.temp-precipitation {
+  text-align: center;
+}
+
+.temp-container h3 {
+  font-weight: 300;
+  font-size: 0.8rem;
+  line-height: 2rem;
+  color: #ffffff;
+}
+
+.farenheit-container {
+  gap: 1.8rem;
+}
+
+.temp-container h1 {
+  font-weight: 500;
+  font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
+  line-height: 1rem;
+  color: #ffffff;
+}
+
+.bottom-section {
+  background-color: black;
+  position: relative;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+
+.bottom-section-wrapper {
+  display: grid;
+  max-width: 80%;
+  gap: 1.5rem;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+
+  grid-template-rows: auto auto auto;
+}
+
+.bottomn-section-status-bar {
+  display: flex;
+  align-items: center;
+}
+
+.status-bar-title {
+  flex: 2;
+  justify-self: flex-end;
+  text-align: end;
+  font-weight: 400;
+  font-size: clamp(0.8rem, calc(1rem + 1.2vw), 1.2rem);
+  line-height: 1.5rem;
+  flex-wrap: wrap;
+  color: #ffffff;
+}
+
+.status-bar-icons {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: center;
+}
+
+.preference-icon {
+  position: relative;
+}
+
+.icons::after {
+  content: "";
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background-color: skyblue;
+}
+
+.preference-icon:hover .icons::after {
+  width: 100%;
+  left: 0;
+}
+
+.active .icons::after {
+  width: 100%;
+  left: 0;
+}
+
+.status-bar-icons > h5 {
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 29px;
+
+  color: #ffffff;
+}
+
+#top-picker {
+  border: 1px solid rgba(63, 62, 62, 0.7);
+  max-width: 10%;
+  background-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 0 1px 0 currentColor;
+}
+
+.carousel-container {
+  color: white;
+  gap: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  top: 22%;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  width: 1.3rem;
+  cursor: pointer;
+}
+
+.left-arrow {
+  left: 8%;
+}
+
+.right-arrow {
+  right: 8%;
+}
+
+.card {
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.2rem;
+  width: 25%;
+  display: flex;
+  /* background-color: rgba(28, 26, 26, 0.4); */
+  background-color: rgb(55, 51, 51);
+  background-image: url("./../assets/CityIcons/london.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: screen;
+  justify-content: space-between;
+}
+
+.card-details {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.card-details h6 {
+  font-size: 0.7rem;
+}
+
+.city-name {
+  font-size: 1rem;
+}
+
+.card-details > * {
+  flex-basis: auto;
+}
+
+.card-icon {
+  width: 0.7rem;
+}
+
+.title-continent > h3 {
+  color: #f1f1f1;
+  font-size: clamp(1rem, calc(1rem + 1.2vw), 1.2rem);
+  font-weight: bold;
+}
+
+.title-continent,
+.sort-grid {
+  display: flex;
+}
+
+.title-continent {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.sort-grid {
+  font-size: clamp(0.5rem, cacl(0.5rem + 1.5vw), 0.9rem);
+  gap: 1rem;
+}
+
+.sort-icon {
+  width: 1rem;
+}
+
+.continent-temp-data {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+}
+
+.card-humidity,
+.card-precipitation {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: clamp(1rem, calc(0.8rem + 1.2vw), 2rem);
+}
+
+.continent-card,
+.continent-city-time,
+.city-precipitation,
+.continent-temp-details {
+  display: flex;
+  background: #2e2e2e;
+}
+
+.continent-card {
+  color: #f1f1f1;
+  padding: 0.5rem;
+}
+
+.continent-name {
+  color: #fff461;
+}
+
+.continent-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.continent-temp-details {
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.continent-card {
+  /* gap: 1rem; */
+  justify-content: space-between;
+}
+
+.city-precipitation {
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .top-section {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .top-section {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+  }
+
+  .card {
+    flex-wrap: wrap;
+  }
+
+  .card-3,
+  .card-4 {
+    display: none;
+  }
+
+  .continent-temp-data {
+    grid-template-columns: auto auto;
+  }
+}
