@@ -27,12 +27,8 @@
 
           <img src="./assets/CityIcons/anadyr.svg" alt="city" class="city-icon" loading="lazy" />
 
-          <select name="cities" id="city-select" class="city-selector">
-            <option value="new_delhi">New Delhi</option>
-            <option value="manali">Manali</option>
-            <option value="noida">Noida</option>
-            <option value="shimla">Shimla</option>
-            <option value="greater_noida">Greater Noida</option>
+          <select name="cities" id="city-select" class="city-selector" onchange="setCityInfo(this)">
+
           </select>
 
         </div>
@@ -41,14 +37,14 @@
 
           <div class="temp-c">
             <h3>Temp °C</h3>
-            <h1>25 °C</h1>
+            <h1 class="city-temp-c">25 °C</h1>
           </div>
 
           <div class="separator"></div>
 
           <div class="temp-humidity">
             <h3>Humidity</h3>
-            <h1>26%</h1>
+            <h1 class="city-humidity">26%</h1>
           </div>
 
         </div>
@@ -56,15 +52,15 @@
         <div class="date-time">
 
           <div class="time">
-            <h2>10:10</h2>
+            <h2 class="city-time">10:10</h2>
 
-            <h3>:44</h3>
+            <h3 class="city-second">:44</h3>
 
             <img src="./assets/Images_Icons/amState.svg" alt="dayState" class="day-night-icon" loading="lazy" />
           </div>
 
           <div class="date">
-            <h3>01-Mar-2020</h3>
+            <h3 class="city-date">01-Mar-2020</h3>
           </div>
 
         </div>
@@ -74,14 +70,14 @@
 
           <div class="temp-f">
             <h3>Temp F</h3>
-            <h1>76 F</h1>
+            <h1 class="city-temp-f">76 F</h1>
           </div>
 
           <div class="separator"></div>
 
           <div class="temp-precipitation">
             <h3>Precipitation</h3>
-            <h1>0%</h1>
+            <h1 class="city-precipitation-top">0%</h1>
           </div>
 
         </div>
@@ -641,6 +637,9 @@
     </section>
 
   </div>
+
+  <script src="./index.js"></script>
+
 </body>
 
 </html>
