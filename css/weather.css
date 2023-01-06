@@ -41,21 +41,23 @@ body {
   /* grid-column: span 2; */
   display: flex;
   align-items: flex-end;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  /* flex-wrap: wrap; */
 }
 
 .city-icon {
   max-width: 86px;
   max-height: auto;
+  flex: 1;
 }
 
 .city-selector {
+  flex: 2;
   padding: 0.6rem 0.8rem;
   border: 0;
   background-color: rgba(131, 131, 131, 0.25);
   font-weight: 200;
-  font-size: calc(1.5rem + 0.390625vw);
+  font-size: clamp(1rem, calc(1.2rem + 1.2vw), 1.5rem);
   line-height: 2rem;
   color: whitesmoke;
 }
