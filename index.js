@@ -19,8 +19,8 @@ const getWeatherData = async () => {
   return data;
 };
 
-const setCityInfo = async (selector) => {
-  const cityName = selector.value;
+const setCityInfo = async (selector = null, city = null) => {
+  const cityName = selector == null ? city : selector.value;
   const weatherData = await getWeatherData();
   const cityData = {
     temperature: weatherData[cityName].temperature,
@@ -110,7 +110,7 @@ const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
   precipitationElement.innerHTML = precipitation;
 };
 
-const setCitySelector = async () => {
+const setCitySelector = async (firstLoad) => {
   const weatherData = await getWeatherData();
   const allCities = [];
 
@@ -126,6 +126,10 @@ const setCitySelector = async () => {
   }
 
   city_selector.innerHTML = options;
+
+  if (firstLoad) {
+    setCityInfo(null, allCities[0]);
+  }
 };
 
-setCitySelector();
+setCitySelector(false);
