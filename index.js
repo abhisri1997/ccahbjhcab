@@ -250,6 +250,10 @@ const setCitySelector = () => {
   }
 
   city_selector.innerHTML = options;
+
+  if (firstLoad) {
+    setCityInfo(null, allCities[0]);
+  }
 };
 
 /**
