@@ -26,23 +26,20 @@ body {
 
 .city-temp-details {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr auto auto auto;
   gap: 1rem;
 }
 
 .temp-container {
   display: flex;
   align-items: center;
-  /* flex-wrap: wrap; */
-  gap: 1rem;
+  justify-self: center;
 }
 
 .icon-city_dropdown {
-  /* grid-column: span 2; */
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
-  /* flex-wrap: wrap; */
 }
 
 .city-icon {
@@ -53,7 +50,17 @@ body {
 
 .city-selector {
   flex: 2;
-  padding: 0.6rem 0.8rem;
+  /* padding: 0.6rem 0.8rem;
+  border: 0;
+  background-color: rgba(131, 131, 131, 0.25);
+  font-weight: 200;
+  font-size: clamp(1rem, calc(1.2rem + 1.2vw), 1.5rem);
+  line-height: 2rem;
+  color: whitesmoke; */
+}
+
+.city-selector input[type="text"] {
+  padding: 0.8rem 0.5rem;
   border: 0;
   background-color: rgba(131, 131, 131, 0.25);
   font-weight: 200;
@@ -156,11 +163,14 @@ body {
 .temp-humidity,
 .temp-precipitation {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .temp-container h3 {
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: clamp(0.8rem, calc(1.2vw + 15%), 1rems);
   line-height: 2rem;
   color: #ffffff;
 }
@@ -171,7 +181,7 @@ body {
 
 .temp-container h1 {
   font-weight: 500;
-  font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
+  font-size: clamp(1rem, calc(15% + 1.2vw), 1.5rem);
   line-height: 1rem;
   color: #ffffff;
 }
@@ -267,20 +277,27 @@ body {
 
 .left-arrow,
 .right-arrow {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   position: absolute;
-  top: 22%;
+  top: 25%;
   border-radius: 50%;
   background-color: #f1f1f1;
-  width: 1.3rem;
   cursor: pointer;
 }
 
 .left-arrow {
-  left: 8%;
+  left: 7%;
 }
 
 .right-arrow {
-  right: 8%;
+  right: 7%;
+}
+
+.left-icon,
+.right-icon {
+  width: 1.5rem;
 }
 
 .card {
@@ -291,11 +308,12 @@ body {
   /* background-color: rgba(28, 26, 26, 0.4); */
   background-color: rgb(55, 51, 51);
   background-image: url("./../assets/CityIcons/london.svg");
+  background-size: 100%;
+  background-position: calc(100% + 5px) calc(100% + 35px);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   background-blend-mode: screen;
   justify-content: space-between;
+  height: 20vmax;
 }
 
 .card-details {

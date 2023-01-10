@@ -27,11 +27,22 @@
 
           <img src="./assets/CityIcons/anadyr.svg" alt="city" class="city-icon" loading="lazy" />
 
-          <select name="cities" id="city-select" class="city-selector" onchange="setCityInfo(this)">
+          <div class="city-selector">
+
+            <input type="text" name="cities" list="cityName" />
+            <datalist id="cityName">
+              <option value="New Delhi">New Delhi</option>
+              <option value="Greater Noida">Greater Noida</option>
+              <option value="Ghaziabad">Ghaziabad</option>
+            </datalist>
+
+          </div>
+
+          <!-- <select name="cities" id="city-select" class="city-selector" onchange="setCityInfo(this)">
             <option value="New_Delhi">New Delhi</option>
             <option value="Greater_Noida">Greater Noida</option>
             <option value="Ghaziabad">Ghaziabad</option>
-          </select>
+          </select> -->
 
         </div>
 
@@ -42,7 +53,11 @@
             <h1 class="city-temp-c">25 °C</h1>
           </div>
 
-          <div class="separator"></div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="temp-container humidity-container">
 
           <div class="temp-humidity">
             <h3>Humidity</h3>
@@ -50,6 +65,7 @@
           </div>
 
         </div>
+
 
         <div class="date-time">
 
@@ -75,13 +91,17 @@
             <h1 class="city-temp-f">76 F</h1>
           </div>
 
-          <div class="separator"></div>
+        </div>
+
+        <div class="separator"></div>
+
+
+        <div class="temp-container precipitation-container">
 
           <div class="temp-precipitation">
             <h3>Precipitation</h3>
             <h1 class="city-precipitation-top">0%</h1>
           </div>
-
         </div>
 
 
