@@ -1,3 +1,7 @@
+@import url("./normalize.css");
+@import url("./reset.css");
+@import url("./../assets/data/vars.css");
+
 html {
   font-family: "Roboto";
   font-style: normal;
@@ -26,23 +30,20 @@ body {
 
 .city-temp-details {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr auto auto auto;
   gap: 1rem;
 }
 
 .temp-container {
   display: flex;
   align-items: center;
-  /* flex-wrap: wrap; */
-  gap: 1rem;
+  justify-self: center;
 }
 
 .icon-city_dropdown {
-  /* grid-column: span 2; */
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
-  /* flex-wrap: wrap; */
 }
 
 .city-icon {
@@ -53,13 +54,23 @@ body {
 
 .city-selector {
   flex: 2;
-  padding: 0.6rem 0.8rem;
+  /* padding: 0.6rem 0.8rem;
   border: 0;
   background-color: rgba(131, 131, 131, 0.25);
   font-weight: 200;
   font-size: clamp(1rem, calc(1.2rem + 1.2vw), 1.5rem);
   line-height: 2rem;
-  color: whitesmoke;
+  color: whitesmoke; */
+}
+
+.city-selector input[type="text"] {
+  padding: 0.8rem 0.5rem;
+  border: 0;
+  background-color: var(--bg-input-box);
+  font-weight: 200;
+  font-size: clamp(1rem, calc(1.2rem + 1.2vw), 1.5rem);
+  line-height: 2rem;
+  color: var(--primary-white);
 }
 
 .date-time {
@@ -85,7 +96,7 @@ body {
   font-weight: 700;
   font-size: clamp(0.8rem, calc(1rem + 1.2vw), 1.8rem);
   line-height: 2.2rem;
-  color: #ffe5b4;
+  color: var(--pale-yellow-text);
 }
 
 .time > h3 {
@@ -94,7 +105,7 @@ body {
   font-weight: 400;
   font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
   line-height: 1.8rem;
-  color: #ffe5b4;
+  color: var(--pale-yellow-text);
 }
 
 .date > h3 {
@@ -103,13 +114,13 @@ body {
   font-weight: 400;
   font-size: calc(1.2rem + 0.5vw);
   line-height: 2rem;
-  color: #f1f1f1;
+  color: var(--primary-white);
   margin: 0;
 }
 
 .day-night-icon {
   max-width: 75px;
-  color: #ffe5b4;
+  color: var(--pale-yellow-text);
   margin-left: 0.6rem;
 }
 
@@ -134,21 +145,21 @@ body {
 .forecast-time {
   text-align: center;
   font-weight: 200;
-  font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
+  font-size: clamp(1rem, calc(0.5rem + 1.2vw), 1.5rem);
   line-height: 1.5rem;
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 .time-data {
   font-weight: 200;
   font-size: clamp(0.5rem, calc(1rem + 1vw), 1.4rem);
   line-height: 1.6rem;
-  color: #ffffff;
+  color: var(--primary-white);
   align-self: center;
 }
 
 .range-separator {
-  color: #f1f1f1;
+  color: var(--primary-white);
 }
 
 .temp-c,
@@ -156,13 +167,16 @@ body {
 .temp-humidity,
 .temp-precipitation {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .temp-container h3 {
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: clamp(0.8rem, calc(1.2vw + 15%), 1rems);
   line-height: 2rem;
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 .farenheit-container {
@@ -171,13 +185,13 @@ body {
 
 .temp-container h1 {
   font-weight: 500;
-  font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
+  font-size: clamp(1rem, calc(15% + 1.2vw), 1.5rem);
   line-height: 1rem;
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 .bottom-section {
-  background-color: black;
+  background-color: var(--primary-black);
   position: relative;
   border-top-left-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
@@ -206,7 +220,7 @@ body {
   font-size: clamp(0.8rem, calc(1rem + 1.2vw), 1.2rem);
   line-height: 1.5rem;
   flex-wrap: wrap;
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 .status-bar-icons {
@@ -229,7 +243,7 @@ body {
   left: 50%;
   width: 0%;
   height: 2px;
-  background-color: skyblue;
+  /* background-color: skyblue; */
 }
 
 .preference-icon:hover .icons::after {
@@ -247,19 +261,19 @@ body {
   font-size: 25px;
   line-height: 29px;
 
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 #top-picker {
   border: 1px solid rgba(63, 62, 62, 0.7);
   max-width: 10%;
   background-color: transparent;
-  color: #ffffff;
+  color: var(--primary-white);
   box-shadow: 0 0 1px 0 currentColor;
 }
 
 .carousel-container {
-  color: white;
+  color: var(--primary-white);
   gap: 1rem;
   display: flex;
   justify-content: space-evenly;
@@ -267,20 +281,30 @@ body {
 
 .left-arrow,
 .right-arrow {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   position: absolute;
-  top: 22%;
-  border-radius: 50%;
-  background-color: #f1f1f1;
-  width: 1.3rem;
+  top: 25%;
+  border-radius: 100%;
+  background-color: var(--primary-white);
   cursor: pointer;
+  width: 30px;
+  height: 30px;
 }
 
 .left-arrow {
-  left: 8%;
+  left: 7%;
 }
 
 .right-arrow {
-  right: 8%;
+  right: 7%;
+}
+
+.left-icon,
+.right-icon {
+  width: 1.2rem;
 }
 
 .card {
@@ -288,14 +312,19 @@ body {
   border-radius: 0.2rem;
   width: 25%;
   display: flex;
-  /* background-color: rgba(28, 26, 26, 0.4); */
-  background-color: rgb(55, 51, 51);
+  background-color: var(--bg-dark-grey-tile);
   background-image: url("./../assets/CityIcons/london.svg");
+  background-size: 100%;
+  background-position: calc(100% + 5px) calc(100% + 35px);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   background-blend-mode: screen;
   justify-content: space-between;
+  height: 20vmax;
+}
+
+.card:hover {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
 .card-details {
@@ -322,7 +351,7 @@ body {
 }
 
 .title-continent > h3 {
-  color: #f1f1f1;
+  color: var(--primary-white);
   font-size: clamp(1rem, calc(1rem + 1.2vw), 1.2rem);
   font-weight: bold;
 }
@@ -368,16 +397,20 @@ body {
 .city-precipitation,
 .continent-temp-details {
   display: flex;
-  background: #2e2e2e;
+  background: var(--bg-grey-tile);
 }
 
 .continent-card {
-  color: #f1f1f1;
+  color: var(--primary-white);
   padding: 0.5rem;
 }
 
+.continent-card:hover {
+  transform: scale(1.05);
+}
+
 .continent-name {
-  color: #fff461;
+  color: var(--bright-yellow-text);
 }
 
 .continent-details {

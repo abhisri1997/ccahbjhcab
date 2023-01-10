@@ -10,8 +10,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./css/normalize.css" />
-  <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/weather.css" />
   <title>WeatherApp</title>
 </head>
@@ -27,20 +25,37 @@
 
           <img src="./assets/CityIcons/anadyr.svg" alt="city" class="city-icon" loading="lazy" />
 
-          <select name="cities" id="city-select" class="city-selector" onchange="setCityInfo(this)">
+          <div class="city-selector">
 
-          </select>
+            <input type="text" name="cities" list="cityName" placeholder="Select a city..." />
+            <datalist id="cityName">
+              <option value="New Delhi">New Delhi</option>
+              <option value="Greater Noida">Greater Noida</option>
+              <option value="Ghaziabad">Ghaziabad</option>
+            </datalist>
+
+          </div>
+
+          <!-- <select name="cities" id="city-select" class="city-selector" onchange="setCityInfo(this)">
+            <option value="New_Delhi">New Delhi</option>
+            <option value="Greater_Noida">Greater Noida</option>
+            <option value="Ghaziabad">Ghaziabad</option>
+          </select> -->
 
         </div>
 
         <div class="temp-container celcius-container">
 
           <div class="temp-c">
-            <h3>Temp °C</h3>
-            <h1 class="city-temp-c">25 °C</h1>
+            <h3>Temp Â°C</h3>
+            <h1 class="city-temp-c">25 Â°C</h1>
           </div>
 
-          <div class="separator"></div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="temp-container humidity-container">
 
           <div class="temp-humidity">
             <h3>Humidity</h3>
@@ -48,6 +63,7 @@
           </div>
 
         </div>
+
 
         <div class="date-time">
 
@@ -73,13 +89,17 @@
             <h1 class="city-temp-f">76 F</h1>
           </div>
 
-          <div class="separator"></div>
+        </div>
+
+        <div class="separator"></div>
+
+
+        <div class="temp-container precipitation-container">
 
           <div class="temp-precipitation">
             <h3>Precipitation</h3>
             <h1 class="city-precipitation-top">0%</h1>
           </div>
-
         </div>
 
 
@@ -215,7 +235,7 @@
             </div>
             <div class="card-temp">
               <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon" loading="lazy">
-              25 °C
+              25 Â°C
             </div>
           </div>
           <div class="card card-2">
@@ -238,7 +258,7 @@
             </div>
             <div class="card-temp">
               <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon" loading="lazy">
-              25 °C
+              25 Â°C
             </div>
           </div>
           <div class="card card-3">
@@ -261,7 +281,7 @@
             </div>
             <div class="card-temp">
               <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon" loading="lazy">
-              25 °C
+              25 Â°C
             </div>
           </div>
           <div class="card card-4">
@@ -284,7 +304,7 @@
             </div>
             <div class="card-temp">
               <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="card-icon" loading="lazy">
-              25 °C
+              25 Â°C
             </div>
           </div>
         </div>
@@ -329,7 +349,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -357,7 +377,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -383,7 +403,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -409,7 +429,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -435,7 +455,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -461,7 +481,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -487,7 +507,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -513,7 +533,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -539,7 +559,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -565,7 +585,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -591,7 +611,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
@@ -617,7 +637,7 @@
               </div>
 
               <div class="continent-temp-details">
-                <h4 class="city-temperature">38 °C</h4>
+                <h4 class="city-temperature">38 Â°C</h4>
 
                 <div class="city-precipitation">
 
