@@ -191,7 +191,7 @@ body {
 }
 
 .bottom-section {
-  background-color: black;
+  background-color: var(--primary-black);
   position: relative;
   border-top-left-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
@@ -397,7 +397,7 @@ body {
 .city-precipitation,
 .continent-temp-details {
   display: flex;
-  background: #2e2e2e;
+  background: var(--bg-grey-tile);
 }
 
 .continent-card {
