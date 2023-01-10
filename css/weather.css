@@ -1,3 +1,7 @@
+@import url("./normalize.css");
+@import url("./reset.css");
+@import url("./../assets/data/vars.css");
+
 html {
   font-family: "Roboto";
   font-style: normal;
@@ -62,11 +66,11 @@ body {
 .city-selector input[type="text"] {
   padding: 0.8rem 0.5rem;
   border: 0;
-  background-color: rgba(131, 131, 131, 0.25);
+  background-color: var(--bg-input-box);
   font-weight: 200;
   font-size: clamp(1rem, calc(1.2rem + 1.2vw), 1.5rem);
   line-height: 2rem;
-  color: whitesmoke;
+  color: var(--primary-white);
 }
 
 .date-time {
@@ -92,7 +96,7 @@ body {
   font-weight: 700;
   font-size: clamp(0.8rem, calc(1rem + 1.2vw), 1.8rem);
   line-height: 2.2rem;
-  color: #ffe5b4;
+  color: var(--pale-yellow-text);
 }
 
 .time > h3 {
@@ -101,7 +105,7 @@ body {
   font-weight: 400;
   font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
   line-height: 1.8rem;
-  color: #ffe5b4;
+  color: var(--pale-yellow-text);
 }
 
 .date > h3 {
@@ -110,13 +114,13 @@ body {
   font-weight: 400;
   font-size: calc(1.2rem + 0.5vw);
   line-height: 2rem;
-  color: #f1f1f1;
+  color: var(--primary-white);
   margin: 0;
 }
 
 .day-night-icon {
   max-width: 75px;
-  color: #ffe5b4;
+  color: var(--pale-yellow-text);
   margin-left: 0.6rem;
 }
 
@@ -143,19 +147,19 @@ body {
   font-weight: 200;
   font-size: clamp(0.5rem, calc(1rem + 1.2vw), 1.5rem);
   line-height: 1.5rem;
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 .time-data {
   font-weight: 200;
   font-size: clamp(0.5rem, calc(1rem + 1vw), 1.4rem);
   line-height: 1.6rem;
-  color: #ffffff;
+  color: var(--primary-white);
   align-self: center;
 }
 
 .range-separator {
-  color: #f1f1f1;
+  color: var(--primary-white);
 }
 
 .temp-c,
@@ -172,7 +176,7 @@ body {
   font-weight: 300;
   font-size: clamp(0.8rem, calc(1.2vw + 15%), 1rems);
   line-height: 2rem;
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 .farenheit-container {
@@ -183,7 +187,7 @@ body {
   font-weight: 500;
   font-size: clamp(1rem, calc(15% + 1.2vw), 1.5rem);
   line-height: 1rem;
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 .bottom-section {
@@ -216,7 +220,7 @@ body {
   font-size: clamp(0.8rem, calc(1rem + 1.2vw), 1.2rem);
   line-height: 1.5rem;
   flex-wrap: wrap;
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 .status-bar-icons {
@@ -239,7 +243,7 @@ body {
   left: 50%;
   width: 0%;
   height: 2px;
-  background-color: skyblue;
+  /* background-color: skyblue; */
 }
 
 .preference-icon:hover .icons::after {
@@ -257,19 +261,19 @@ body {
   font-size: 25px;
   line-height: 29px;
 
-  color: #ffffff;
+  color: var(--primary-white);
 }
 
 #top-picker {
   border: 1px solid rgba(63, 62, 62, 0.7);
   max-width: 10%;
   background-color: transparent;
-  color: #ffffff;
+  color: var(--primary-white);
   box-shadow: 0 0 1px 0 currentColor;
 }
 
 .carousel-container {
-  color: white;
+  color: var(--primary-white);
   gap: 1rem;
   display: flex;
   justify-content: space-evenly;
@@ -283,7 +287,7 @@ body {
   position: absolute;
   top: 25%;
   border-radius: 50%;
-  background-color: #f1f1f1;
+  background-color: var(--primary-white);
   cursor: pointer;
 }
 
@@ -306,7 +310,7 @@ body {
   width: 25%;
   display: flex;
   /* background-color: rgba(28, 26, 26, 0.4); */
-  background-color: rgb(55, 51, 51);
+  background-color: var(--bg-dark-grey-tile);
   background-image: url("./../assets/CityIcons/london.svg");
   background-size: 100%;
   background-position: calc(100% + 5px) calc(100% + 35px);
@@ -340,7 +344,7 @@ body {
 }
 
 .title-continent > h3 {
-  color: #f1f1f1;
+  color: var(--primary-white);
   font-size: clamp(1rem, calc(1rem + 1.2vw), 1.2rem);
   font-weight: bold;
 }
@@ -390,12 +394,12 @@ body {
 }
 
 .continent-card {
-  color: #f1f1f1;
+  color: var(--primary-white);
   padding: 0.5rem;
 }
 
 .continent-name {
-  color: #fff461;
+  color: var(--bright-yellow-text);
 }
 
 .continent-details {
