@@ -118,7 +118,8 @@ const setCitySelector = async (firstLoad) => {
     allCities.push(city);
   }
 
-  const city_selector = document.getElementById("city-select");
+  console.log(allCities);
+  const city_selector = document.getElementById("cityName");
   let options = "";
 
   for (let city of allCities) {
