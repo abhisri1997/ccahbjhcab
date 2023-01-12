@@ -6,7 +6,7 @@
     "temperature": "4°C",
     "humidity": "91%",
     "precipitation": "8%",
-    "nextFiveHrs": ["6°C", "7°C", "11°C", "2°C"]
+    "nextFiveHrs": ["6°C", "7°C", "11°C", "2°C", "8°C"]
   },
   "newyork": {
     "cityName": "NewYork",
@@ -15,7 +15,7 @@
     "temperature": "23°C",
     "humidity": "52%",
     "precipitation": "46%",
-    "nextFiveHrs": ["18°C", "20°C", "18°C", "17°C"]
+    "nextFiveHrs": ["18°C", "20°C", "18°C", "17°C", "21°C"]
   },
   "jamaica": {
     "cityName": "Jamaica",
@@ -24,7 +24,7 @@
     "temperature": "29°C",
     "humidity": "39%",
     "precipitation": "58%",
-    "nextFiveHrs": ["24°C", "27°C", "28°C", "24°C"]
+    "nextFiveHrs": ["24°C", "27°C", "28°C", "24°C", "27°C"]
   },
   "losangeles": {
     "cityName": "LosAngeles",
@@ -33,7 +33,7 @@
     "temperature": "23°C",
     "humidity": "52%",
     "precipitation": "46%",
-    "nextFiveHrs": ["19°C", "21°C", "23°C", "18°C"]
+    "nextFiveHrs": ["19°C", "21°C", "23°C", "18°C", "24°C"]
   },
   "winnipeg": {
     "cityName": "Winnipeg",
@@ -42,7 +42,7 @@
     "temperature": "9°C",
     "humidity": "81%",
     "precipitation": "18%",
-    "nextFiveHrs": ["3°C", "7°C", "4°C", "-1°C"]
+    "nextFiveHrs": ["3°C", "7°C", "4°C", "-1°C", "-3°C"]
   },
   "juba": {
     "cityName": "Juba",
@@ -51,7 +51,7 @@
     "temperature": "18°C",
     "humidity": "62%",
     "precipitation": "36%",
-    "nextFiveHrs": ["37°C", "41°C", "38°C", "37°C"]
+    "nextFiveHrs": ["37°C", "41°C", "38°C", "37°C", "35°C"]
   },
   "maseru": {
     "cityName": "Maseru",
@@ -60,7 +60,7 @@
     "temperature": "43°C",
     "humidity": "10%",
     "precipitation": "86%",
-    "nextFiveHrs": ["17°C", "17°C", "19°C", "15°C"]
+    "nextFiveHrs": ["17°C", "17°C", "19°C", "15°C", "20°C"]
   },
   "london": {
     "cityName": "London",
@@ -69,7 +69,7 @@
     "temperature": "7°C",
     "humidity": "85%",
     "precipitation": "14%",
-    "nextFiveHrs": ["-7°C", "-6°C", "-5°C", "-10°C"]
+    "nextFiveHrs": ["-7°C", "-6°C", "-5°C", "-10°C", "-13°C"]
   },
   "vienna": {
     "cityName": "Vienna",
@@ -78,7 +78,7 @@
     "temperature": "10°C",
     "humidity": "79%",
     "precipitation": "20%",
-    "nextFiveHrs": ["-1°C", "-1°C", "4°C", "-2°C"]
+    "nextFiveHrs": ["-1°C", "-1°C", "4°C", "-2°C", "-3°C"]
   },
   "moscow": {
     "cityName": "Moscow",
@@ -87,7 +87,7 @@
     "temperature": "11°C",
     "humidity": "77%",
     "precipitation": "22%",
-    "nextFiveHrs": ["12°C", "14°C", "15°C", "8°C"]
+    "nextFiveHrs": ["12°C", "14°C", "15°C", "8°C", "7°C"]
   },
   "dublin": {
     "cityName": "Dublin",
@@ -96,7 +96,7 @@
     "temperature": "15°C",
     "humidity": "68%",
     "precipitation": "30%",
-    "nextFiveHrs": ["24°C", "28°C", "29°C", "21°C"]
+    "nextFiveHrs": ["24°C", "28°C", "29°C", "21°C", "23°C"]
   },
   "karachi": {
     "cityName": "Karachi",
@@ -105,7 +105,7 @@
     "temperature": "25°C",
     "humidity": "47%",
     "precipitation": "50%",
-    "nextFiveHrs": ["21°C", "24°C", "21°C", "19°C"]
+    "nextFiveHrs": ["21°C", "24°C", "21°C", "19°C", "22°C"]
   },
   "kolkata": {
     "cityName": "Kolkata",
@@ -114,7 +114,7 @@
     "temperature": "34°C",
     "humidity": "29%",
     "precipitation": "68%",
-    "nextFiveHrs": ["33°C", "35°C", "37°C", "32°C"]
+    "nextFiveHrs": ["33°C", "35°C", "37°C", "32°C", "34°C"]
   },
   "yangon": {
     "cityName": "Yangon",
@@ -123,7 +123,7 @@
     "temperature": "24°C",
     "humidity": "50%",
     "precipitation": "48%",
-    "nextFiveHrs": ["31°C", "32°C", "36°C", "27°C"]
+    "nextFiveHrs": ["31°C", "32°C", "36°C", "27°C", "29°C"]
   },
   "bangkok": {
     "cityName": "BangKok",
@@ -132,7 +132,7 @@
     "temperature": "32°C",
     "humidity": "33%",
     "precipitation": "64%",
-    "nextFiveHrs": ["32°C", "34°C", "32°C", "32°C"]
+    "nextFiveHrs": ["32°C", "34°C", "32°C", "32°C", "35°C"]
   },
   "seoul": {
     "cityName": "Seoul",
@@ -141,7 +141,7 @@
     "temperature": "6°C",
     "humidity": "87%",
     "precipitation": "12%",
-    "nextFiveHrs": ["1°C", "1°C", "3°C", "0°C"]
+    "nextFiveHrs": ["1°C", "1°C", "3°C", "0°C", "-1°C"]
   },
   "anadyr": {
     "cityName": "Anadyr",
@@ -150,7 +150,7 @@
     "temperature": "-2°C",
     "humidity": "100%",
     "precipitation": "0%",
-    "nextFiveHrs": ["-1°C", "3°C", "-1°C", "-3°C"]
+    "nextFiveHrs": ["-1°C", "3°C", "-1°C", "-3°C", "-5°C"]
   },
   "brokenhill": {
     "cityName": "BrokenHill",
@@ -159,7 +159,7 @@
     "temperature": "10°C",
     "humidity": "79%",
     "precipitation": "20%",
-    "nextFiveHrs": ["17°C", "21°C", "22°C", "15°C"]
+    "nextFiveHrs": ["17°C", "21°C", "22°C", "15°C", "18°C"]
   },
   "perth": {
     "cityName": "Perth",
@@ -168,7 +168,7 @@
     "temperature": "18°C",
     "humidity": "62%",
     "precipitation": "36%",
-    "nextFiveHrs": ["6°C", "10°C", "11°C", "6°C"]
+    "nextFiveHrs": ["6°C", "10°C", "11°C", "6°C", "8°C"]
   },
   "auckland": {
     "cityName": "Auckland",
@@ -177,7 +177,7 @@
     "temperature": "17°C",
     "humidity": "64%",
     "precipitation": "34%",
-    "nextFiveHrs": ["17°C", "19°C", "18°C", "17°C"]
+    "nextFiveHrs": ["17°C", "19°C", "18°C", "17°C", "20°C"]
   },
   "vostok": {
     "cityName": "Vostok",
@@ -186,7 +186,7 @@
     "temperature": "-61°C",
     "humidity": "100%",
     "precipitation": "0%",
-    "nextFiveHrs": ["-64°C", "-59°C", "-64°C", "-68°C"]
+    "nextFiveHrs": ["-64°C", "-59°C", "-64°C", "-68°C", "-66°C"]
   },
   "troll": {
     "cityName": "Troll",
@@ -195,6 +195,6 @@
     "temperature": "-52°C",
     "humidity": "100%",
     "precipitation": "0%",
-    "nextFiveHrs": ["-70°C", "-70°C", "-66°C", "-71°C"]
+    "nextFiveHrs": ["-70°C", "-70°C", "-66°C", "-71°C", "-68°C"]
   }
 }

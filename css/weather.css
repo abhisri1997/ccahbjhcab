@@ -210,6 +210,8 @@ body {
 .bottomn-section-status-bar {
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0;
 }
 
 .status-bar-title {
@@ -243,7 +245,7 @@ body {
   left: 50%;
   width: 0%;
   height: 2px;
-  /* background-color: skyblue; */
+  background-color: skyblue;
 }
 
 .preference-icon:hover .icons::after {

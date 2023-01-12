@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
   <div class="container">
 
     <section class="top-section">
@@ -27,8 +28,8 @@
 
           <div class="city-selector">
 
-            <input type="text" name="cities" list="cityName" placeholder="Select a city..."
-              onchange="setCityInfo(this)" />
+            <input title="Select city to weather details" type="text" name="cities" list="cityName"
+              placeholder="Select a city..." />
             <datalist id="cityName">
               <option value="New Delhi">New Delhi</option>
               <option value="Greater Noida">Greater Noida</option>
@@ -180,11 +181,11 @@
 
           <h3 class="status-bar-title">Top Cities around world</h3>
 
-          <div class="status-bar-icons">
+          <div title="Select icon to show cities with selected weather condition" class="status-bar-icons">
 
             <div class="preference-icon active">
 
-              <a href="#" class="icons">
+              <a title="Cities with Sunny Weather" href="#" class="icons">
                 <img src="./assets/WeatherIcons/sunnyIcon.svg" alt="" class="" loading="lazy">
               </a>
 
@@ -192,7 +193,7 @@
 
             <div class="preference-icon">
 
-              <a href="#" class="icons">
+              <a title="Cities with Snowy Weather" href="#" class="icons">
                 <img src="./assets/WeatherIcons/snowflakeIcon.svg" alt="" class="" loading="lazy">
               </a>
 
@@ -200,7 +201,7 @@
 
             <div class="preference-icon">
 
-              <a href="#" class="icons">
+              <a title="Cities with Rainy Weather" href="#" class="icons">
                 <img src="./assets/WeatherIcons/rainyIcon.svg" alt="" class="" loading="lazy">
               </a>
 
@@ -659,7 +660,7 @@
 
   </div>
 
-  <script src="./index.js"></script>
+  <script type="module" src="./index.js"></script>
 
 </body>
 

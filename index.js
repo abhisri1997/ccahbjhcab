@@ -1,3 +1,5 @@
+import getWeatherData from "./WeatherData.js";
+
 const monthMatch = {
   1: "Jan",
   2: "Feb",
@@ -13,15 +15,12 @@ const monthMatch = {
   12: "Dec",
 };
 
-const getWeatherData = async () => {
-  const response = await fetch("./assets/data/data.json");
-  const data = await response.json();
-  return data;
-};
+let inputSelector = document.querySelector(".city-selector > input[type=text]");
 
 const setCityInfo = async (selector = null, city = null) => {
   const cityName = selector == null ? city : selector.value;
   const weatherData = await getWeatherData();
+
   const cityData = {
     temperature: weatherData[cityName].temperature,
     humidity: weatherData[cityName].humidity,
@@ -34,10 +33,12 @@ const setCityInfo = async (selector = null, city = null) => {
   const time = getCityDateAndTime(cityData.dateTime)[1];
   const isAM = getCityDateAndTime(cityData.dateTime)[2];
 
+  inputSelector.value = weatherData[cityName].cityName;
   setCityIcon(cityName);
   setCityTemperature(cityData.temperature);
   setCityDateTime(date, time, isAM);
   setCityHumidityAndPrecipitation(cityData.humidity, cityData.precipitation);
+  setForecastData(cityData.forecast, cityData.temperature);
 };
 
 const setCityIcon = (cityName) => {
@@ -100,6 +101,36 @@ const setCityDateTime = (date, time, isAM) => {
   isAMElement.src = isAM ? dayIcon : nightIcon;
 };
 
+const setForecastData = (forecast, currentTemp) => {
+  const forecastLength = forecast.length;
+  let tempNow = parseInt(currentTemp);
+
+  const weatherIconsHTML = document.getElementsByClassName("weather-icon");
+  const forecastHTML = document.getElementsByClassName("time-data");
+
+  let weatherType = tempNow < 8 ? "snowflakeIcon" : "sunnyIcon";
+  let altText = weatherType === "sunnyIcon" ? "sunny" : "snowy";
+  let iconLocation = `./assets/WeatherIcons/${weatherType}.svg`;
+
+  weatherIconsHTML[0].setAttribute("src", iconLocation);
+  weatherIconsHTML[0].setAttribute("alt", altText);
+
+  forecastHTML[0].innerHTML = tempNow.toString();
+
+  for (let i = 1; i <= forecastLength; i++) {
+    let forecastTemp = parseInt(forecast[i - 1]);
+
+    weatherType = forecastTemp < 8 ? "snowflakeIcon" : "sunnyIcon";
+    altText = weatherType === "sunnyIcon" ? "sunny" : "snowy";
+    iconLocation = `./assets/WeatherIcons/${weatherType}.svg`;
+
+    weatherIconsHTML[i].setAttribute("src", iconLocation);
+    weatherIconsHTML[i].setAttribute("alt", altText);
+
+    forecastHTML[i].innerHTML = forecastTemp.toString();
+  }
+};
+
 const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
   const humidityElement = document.getElementsByClassName("city-humidity")[0];
   humidityElement.innerHTML = humidity;
@@ -118,7 +149,6 @@ const setCitySelector = async (firstLoad) => {
     allCities.push(city);
   }
 
-  console.log(allCities);
   const city_selector = document.getElementById("cityName");
   let options = "";
 
@@ -134,3 +164,15 @@ const setCitySelector = async (firstLoad) => {
 };
 
 setCitySelector(false);
+
+window.addEventListener("DOMContentLoaded", setCitySelector(true));
+
+const cityInputSelector = document.querySelector(
+  ".city-selector > input[type=text]"
+);
+
+cityInputSelector.addEventListener("input", (e) => {
+  let currentCityValue = inputSelector.value;
+
+  setCityInfo(null, currentCityValue);
+});
