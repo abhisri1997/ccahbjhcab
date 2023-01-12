@@ -1,24 +1,12 @@
 import getWeatherData from "./WeatherData.js";
+import monthMatch from "./monthMatch.js";
 
-const monthMatch = {
-  1: "Jan",
-  2: "Feb",
-  3: "Mar",
-  4: "Apr",
-  5: "May",
-  6: "Jun",
-  7: "Jul",
-  8: "Aug",
-  9: "Sep",
-  10: "Oct",
-  11: "Nov",
-  12: "Dec",
-};
+const cityInputSelector = document.querySelector(
+  ".city-selector > input[type=text]"
+);
 
-let inputSelector = document.querySelector(".city-selector > input[type=text]");
-
-const setCityInfo = async (selector = null, city = null) => {
-  const cityName = selector == null ? city : selector.value;
+const setCityInfo = async (city = null) => {
+  const cityName = city;
   const weatherData = await getWeatherData();
 
   const cityData = {
@@ -33,7 +21,7 @@ const setCityInfo = async (selector = null, city = null) => {
   const time = getCityDateAndTime(cityData.dateTime)[1];
   const isAM = getCityDateAndTime(cityData.dateTime)[2];
 
-  inputSelector.value = weatherData[cityName].cityName;
+  cityInputSelector.value = weatherData[cityName].cityName;
   setCityIcon(cityName);
   setCityTemperature(cityData.temperature);
   setCityDateTime(date, time, isAM);
@@ -141,13 +129,22 @@ const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
   precipitationElement.innerHTML = precipitation;
 };
 
-const setCitySelector = async (firstLoad) => {
+const getAllCities = async () => {
   const weatherData = await getWeatherData();
   const allCities = [];
 
   for (let city in weatherData) {
     allCities.push(city);
   }
+
+  allCities.sort();
+
+  return allCities;
+};
+
+const setCitySelector = async () => {
+  const weatherData = await getWeatherData();
+  const allCities = await getAllCities();
 
   const city_selector = document.getElementById("cityName");
   let options = "";
@@ -158,21 +155,18 @@ const setCitySelector = async (firstLoad) => {
 
   city_selector.innerHTML = options;
 
-  if (firstLoad) {
-    setCityInfo(null, allCities[0]);
-  }
+  setCityInfo(allCities[0]);
 };
 
-setCitySelector(false);
+//Event Listener for first page load.
 
-window.addEventListener("DOMContentLoaded", setCitySelector(true));
+window.addEventListener("DOMContentLoaded", setCitySelector());
 
-const cityInputSelector = document.querySelector(
-  ".city-selector > input[type=text]"
-);
+// On Input change event listener for top section when city name changes
 
-cityInputSelector.addEventListener("input", (e) => {
-  let currentCityValue = inputSelector.value;
+cityInputSelector.addEventListener("input", async () => {
+  let currentCityValue = cityInputSelector.value;
+  const allCities = await getAllCities();
 
-  setCityInfo(null, currentCityValue);
+  if (allCities.includes(currentCityValue)) setCityInfo(currentCityValue);
 });
