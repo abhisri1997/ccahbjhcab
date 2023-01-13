@@ -5,7 +5,12 @@ const cityInputSelector = document.querySelector(
   ".city-selector > input[type=text]"
 );
 
-const setCityInfo = async (city = null) => {
+/**
+ * Takes city name and initializes the top section with the specified weather information received for particular city.
+ *
+ * @param {string} city
+ */
+const setCityInfo = async (city) => {
   const cityName = city;
   const weatherData = await getWeatherData();
 
@@ -29,12 +34,23 @@ const setCityInfo = async (city = null) => {
   setForecastData(cityData.forecast, cityData.temperature);
 };
 
+/**
+ * Takes a city name and sets the icon in top section of the UI for the particular city.
+ *
+ * @param {string} cityName
+ */
 const setCityIcon = (cityName) => {
   const cityIconElement = document.getElementsByClassName("city-icon")[0];
   const iconLocation = `./assets/CityIcons/${cityName}.svg`;
   cityIconElement.src = iconLocation;
 };
 
+/**
+ * Takes date and time in string format and return date, time and AM/PM in array format.
+ *
+ * @param {string} dateTime
+ * @return {Array}
+ */
 const getCityDateAndTime = (dateTime) => {
   const dateAndTime = dateTime.split(",");
 
@@ -59,6 +75,11 @@ const getCityDateAndTime = (dateTime) => {
   return [formattedDate, formattedTime, isAM];
 };
 
+/**
+ *
+ *
+ * @param {*} cityTemperature
+ */
 const setCityTemperature = (cityTemperature) => {
   const farenheitTemperature = parseInt(cityTemperature) * (9 / 5) + 32 + " F";
 
@@ -73,6 +94,13 @@ const setCityTemperature = (cityTemperature) => {
   cityFarenheitTemperatureElement.innerHTML = farenheitTemperature;
 };
 
+/**
+ *
+ *
+ * @param {*} date
+ * @param {*} time
+ * @param {*} isAM
+ */
 const setCityDateTime = (date, time, isAM) => {
   const dateElement = document.getElementsByClassName("city-date")[0];
   dateElement.innerHTML = date;
@@ -89,6 +117,12 @@ const setCityDateTime = (date, time, isAM) => {
   isAMElement.src = isAM ? dayIcon : nightIcon;
 };
 
+/**
+ *
+ *
+ * @param {*} forecast
+ * @param {*} currentTemp
+ */
 const setForecastData = (forecast, currentTemp) => {
   const forecastLength = forecast.length;
   let tempNow = parseInt(currentTemp);
@@ -119,6 +153,12 @@ const setForecastData = (forecast, currentTemp) => {
   }
 };
 
+/**
+ *
+ *
+ * @param {*} humidity
+ * @param {*} precipitation
+ */
 const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
   const humidityElement = document.getElementsByClassName("city-humidity")[0];
   humidityElement.innerHTML = humidity;
@@ -129,6 +169,11 @@ const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
   precipitationElement.innerHTML = precipitation;
 };
 
+/**
+ *
+ *
+ * @return {*}
+ */
 const getAllCities = async () => {
   const weatherData = await getWeatherData();
   const allCities = [];
@@ -142,6 +187,10 @@ const getAllCities = async () => {
   return allCities;
 };
 
+/**
+ *
+ *
+ */
 const setCitySelector = async () => {
   const weatherData = await getWeatherData();
   const allCities = await getAllCities();
