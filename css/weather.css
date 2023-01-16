@@ -274,14 +274,6 @@ body {
   box-shadow: 0 0 1px 0 currentColor;
 }
 
-.carousel-container {
-  color: var(--primary-white);
-  gap: 1rem;
-  display: flex;
-  overflow: hidden;
-  justify-content: space-evenly;
-}
-
 .left-arrow,
 .right-arrow {
   display: flex;
@@ -310,11 +302,27 @@ body {
   width: 1.2rem;
 }
 
+.carousel-container {
+  color: var(--primary-white);
+  gap: 1rem;
+  display: flex;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  scroll-behavior: smooth;
+}
+
 .card {
   padding: 0.5rem 0.8rem;
+  margin: 0 auto;
+  transition: all 0.5s ease;
   border-radius: 0.2rem;
-  min-width: 25%;
+  min-width: 23.5%;
+  transform: scale(0.9);
   display: flex;
+  flex-wrap: nowrap;
   background-color: var(--bg-dark-grey-tile);
   background-image: url("./../assets/CityIcons/london.svg");
   background-size: 60%;
@@ -322,13 +330,12 @@ body {
   background-repeat: no-repeat;
   background-blend-mode: screen;
   height: 20vmax;
-  overflow: hidden;
   justify-content: space-between;
 }
 
 .card:hover {
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
-  transform: scale(1.05);
+  transform: scale(1);
 }
 
 .card-details {
@@ -407,6 +414,7 @@ body {
 .continent-card {
   color: var(--primary-white);
   padding: 0.5rem;
+  transition: transform 0.5s ease;
 }
 
 .continent-card:hover {
