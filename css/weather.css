@@ -278,6 +278,7 @@ body {
   color: var(--primary-white);
   gap: 1rem;
   display: flex;
+  overflow: hidden;
   justify-content: space-evenly;
 }
 
@@ -312,7 +313,7 @@ body {
 .card {
   padding: 0.5rem 0.8rem;
   border-radius: 0.2rem;
-  width: 25%;
+  min-width: 25%;
   display: flex;
   background-color: var(--bg-dark-grey-tile);
   background-image: url("./../assets/CityIcons/london.svg");
@@ -320,8 +321,9 @@ body {
   background-position: calc(100% + 5px) calc(100% + 35px);
   background-repeat: no-repeat;
   background-blend-mode: screen;
-  justify-content: space-between;
   height: 20vmax;
+  overflow: hidden;
+  justify-content: space-between;
 }
 
 .card:hover {

@@ -5,6 +5,20 @@ const cityInputSelector = document.querySelector(
   ".city-selector > input[type=text]"
 );
 
+const preferenceIconSelector = document.querySelectorAll(
+  ".preference-icon > .icons"
+);
+
+const spinnerSelector = document.querySelector("#top-picker");
+
+let activeElementSelector = document.querySelector(".active");
+
+let activePreferenceIconSelector = document.querySelectorAll(
+  ".active > .icons > img"
+);
+
+const carouselSelector = document.querySelector(".carousel-container");
+
 /**
  * Takes city name and initializes the top section with the specified weather information received for particular city.
  *
@@ -76,9 +90,9 @@ const getCityDateAndTime = (dateTime) => {
 };
 
 /**
+ * Sets the temperature in top section of the UI.
  *
- *
- * @param {*} cityTemperature
+ * @param {string} cityTemperature
  */
 const setCityTemperature = (cityTemperature) => {
   const farenheitTemperature = parseInt(cityTemperature) * (9 / 5) + 32 + " F";
@@ -95,11 +109,11 @@ const setCityTemperature = (cityTemperature) => {
 };
 
 /**
+ * Sets the city date and time in top section of the UI.
  *
- *
- * @param {*} date
- * @param {*} time
- * @param {*} isAM
+ * @param {String} date
+ * @param {string} time
+ * @param {string} isAM
  */
 const setCityDateTime = (date, time, isAM) => {
   const dateElement = document.getElementsByClassName("city-date")[0];
@@ -118,10 +132,28 @@ const setCityDateTime = (date, time, isAM) => {
 };
 
 /**
+ * Return weather icon based on the temperature passed.
+ *
+ * @param {number} temp
+ * @return {string} weather icon
+ */
+const getWeatherIconType = (temp) => {
+  let weatherType = "";
+
+  if (temp > 29) weatherType = "sunnyIcon";
+  else if (temp < 18 && temp > 10) weatherType = "rainyIcon";
+  else if (temp >= 23 && temp <= 29) weatherType = "cloudyIcon";
+  else if (temp <= 10) weatherType = "snowflakeIcon";
+  else weatherType = "windyIcon";
+
+  return weatherType;
+};
+
+/**
  *
  *
- * @param {*} forecast
- * @param {*} currentTemp
+ * @param {Array<T>} array of forecast temperature
+ * @param {number} currentTemp
  */
 const setForecastData = (forecast, currentTemp) => {
   const forecastLength = forecast.length;
@@ -130,7 +162,8 @@ const setForecastData = (forecast, currentTemp) => {
   const weatherIconsHTML = document.getElementsByClassName("weather-icon");
   const forecastHTML = document.getElementsByClassName("time-data");
 
-  let weatherType = tempNow < 8 ? "snowflakeIcon" : "sunnyIcon";
+  let weatherType = getWeatherIconType(tempNow);
+
   let altText = weatherType === "sunnyIcon" ? "sunny" : "snowy";
   let iconLocation = `./assets/WeatherIcons/${weatherType}.svg`;
 
@@ -142,7 +175,8 @@ const setForecastData = (forecast, currentTemp) => {
   for (let i = 1; i <= forecastLength; i++) {
     let forecastTemp = parseInt(forecast[i - 1]);
 
-    weatherType = forecastTemp < 8 ? "snowflakeIcon" : "sunnyIcon";
+    weatherType = getWeatherIconType(forecastTemp);
+
     altText = weatherType === "sunnyIcon" ? "sunny" : "snowy";
     iconLocation = `./assets/WeatherIcons/${weatherType}.svg`;
 
@@ -154,10 +188,10 @@ const setForecastData = (forecast, currentTemp) => {
 };
 
 /**
+ * Sets Humidity and Precipitation in top section of UI.
  *
- *
- * @param {*} humidity
- * @param {*} precipitation
+ * @param {string} humidity
+ * @param {string} precipitation
  */
 const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
   const humidityElement = document.getElementsByClassName("city-humidity")[0];
@@ -170,9 +204,9 @@ const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
 };
 
 /**
+ * Gets all the cities from API.
  *
- *
- * @return {*}
+ * @return {Array} Array of cities
  */
 const getAllCities = async () => {
   const weatherData = await getWeatherData();
@@ -188,7 +222,7 @@ const getAllCities = async () => {
 };
 
 /**
- *
+ * Sets the input selector data from the api
  *
  */
 const setCitySelector = async () => {
@@ -203,13 +237,17 @@ const setCitySelector = async () => {
   }
 
   city_selector.innerHTML = options;
-
-  setCityInfo(allCities[0]);
 };
 
 //Event Listener for first page load.
 
-window.addEventListener("DOMContentLoaded", setCitySelector());
+window.addEventListener("DOMContentLoaded", async () => {
+  const allCities = await getAllCities();
+
+  setCityInfo(allCities[0]);
+  setCitySelector();
+  dynamicCard("sunny");
+});
 
 // On Input change event listener for top section when city name changes
 
@@ -219,3 +257,179 @@ cityInputSelector.addEventListener("input", async () => {
 
   if (allCities.includes(currentCityValue)) setCityInfo(currentCityValue);
 });
+
+// IIFEE for adding event listeners to all the icons in middle section of the UI.
+
+preferenceIconSelector.forEach((el) => {
+  el.addEventListener("click", (event) => {
+    const weatherType = event.target.alt.split(" ")[0];
+    console.log(weatherType);
+    activeElementSelector = document.querySelector(".active");
+    activeElementSelector.classList.remove("active");
+    el.parentElement.classList.add("active");
+    dynamicCard(weatherType);
+  });
+});
+
+// On input change event listener for mid section spinner
+
+spinnerSelector.addEventListener("change", async (e) => {
+  let weatherType = document.querySelector(".active img").alt.split(" ")[0];
+  dynamicCard(weatherType);
+});
+
+const getPrefereceWeatherDetails = async (weather) => {
+  const weatherDetails = await getWeatherData();
+  const response = [];
+
+  for (let city in weatherDetails) {
+    const temperatureCheck = parseInt(weatherDetails[city].temperature);
+    const humidityCheck = parseInt(weatherDetails[city].humidity);
+    const precipitationCheck = parseInt(weatherDetails[city].precipitation);
+
+    if (
+      weatherConditionCheck(
+        weather,
+        temperatureCheck,
+        humidityCheck,
+        precipitationCheck
+      )
+    ) {
+      response.push(weatherDetails[city]);
+    }
+  }
+
+  return response;
+};
+
+const weatherConditionCheck = (
+  weather,
+  temperatureCheck,
+  humidityCheck,
+  precipitationCheck
+) => {
+  switch (weather) {
+    case "sunny":
+      if (
+        temperatureCheck >= 29 &&
+        humidityCheck < 50 &&
+        precipitationCheck > 50
+      ) {
+        return true;
+      }
+      break;
+    case "snowy":
+      if (
+        temperatureCheck >= 20 &&
+        temperatureCheck <= 28 &&
+        humidityCheck > 50 &&
+        precipitationCheck < 50
+      ) {
+        return true;
+      }
+      break;
+    case "rainy":
+      if (temperatureCheck < 20 && humidityCheck >= 50) {
+        return true;
+      }
+      break;
+    default:
+      console.error("Unknown weather condition: " + weather);
+  }
+
+  return false;
+};
+
+const dynamicCard = async (weatherType = "sunny") => {
+  activePreferenceIconSelector = document.querySelectorAll(
+    ".active > .icons > img"
+  );
+  const preferredWeatherCityDeatils = await getPrefereceWeatherDetails(
+    weatherType
+  );
+  const preferredWeatherCities = preferredWeatherCityDeatils.length;
+  const numberOfCards = Math.min(preferredWeatherCities, spinnerSelector.value);
+
+  let card = "";
+  let customCardStyle = {};
+
+  for (let i = 0; i < numberOfCards; i++) {
+    const city_name = preferredWeatherCityDeatils[i].cityName;
+    const date_time = getCityDateAndTime(
+      preferredWeatherCityDeatils[i].dateAndTime
+    );
+    const city_time = `${date_time[1].split("-")[0]} ${
+      date_time[2] ? "AM" : "PM"
+    }`;
+    const city_date = date_time[0];
+    const city_humidity = preferredWeatherCityDeatils[i].humidity;
+    const city_temp = preferredWeatherCityDeatils[i].temperature;
+    const city_precipitation = preferredWeatherCityDeatils[i].precipitation;
+    const weatherType = activePreferenceIconSelector[0].alt.split(" ")[0];
+    let weatherTypeIcon;
+    switch (weatherType) {
+      case "sunny":
+        weatherTypeIcon = "sunnyIcon";
+        break;
+      case "snowy":
+        weatherTypeIcon = "snowflakeIcon";
+        break;
+      case "rainy":
+        weatherTypeIcon = "rainyIcon";
+        break;
+      default:
+        console.error("Unknown weather type");
+    }
+
+    card += `
+          <div class="card card-${i + 1}">
+
+            <div class="card-details">
+
+              <h2 class="city-name">${city_name}</h2>
+              <h3 class="current-time">${city_time}</h3>
+              <h3 class="current-date">${city_date}</h3>
+
+              <div class="card-humidity">
+
+                <img src="./assets/WeatherIcons/humidityIcon.svg" alt="" class="card-icon" loading="lazy">
+                <h6>${city_humidity}</h6>
+
+              </div>
+
+              <div class="card-precipitation">
+
+                <img src="./assets/WeatherIcons/precipitationIcon.svg" alt="" class="card-icon" loading="lazy">
+                <h6>${city_precipitation}</h6>
+
+              </div>
+
+            </div>
+
+            <div class="card-temp">
+
+              <img src="./assets/WeatherIcons/${weatherTypeIcon}.svg" alt="" class="card-icon" loading="lazy">
+              ${city_temp}
+
+            </div>
+
+          </div>`;
+  }
+
+  carouselSelector.innerHTML = card;
+
+  for (let i = 0; i < numberOfCards; i++) {
+    const currentCard = `card-${i + 1}`;
+    const city_name = preferredWeatherCityDeatils[i].cityName.toLowerCase();
+    const currentCardSelector = document.querySelector(`.${currentCard}`);
+
+    currentCardSelector.style.cssText = `
+      background-color: var(--bg-dark-grey-tile);
+      background-image: url("./../assets/CityIcons/${city_name}.svg");
+      background-size: 100%;
+      background-position: calc(100% + 5px) calc(100% + 35px);
+      background-repeat: no-repeat;
+      background-blend-mode: screen;
+    `;
+  }
+};
