@@ -258,7 +258,7 @@ cityInputSelector.addEventListener("input", async () => {
   if (allCities.includes(currentCityValue)) setCityInfo(currentCityValue);
 });
 
-// IIFEE for adding event listeners to all the icons in middle section of the UI.
+// Event listeners for all the icons in middle section of the UI.
 
 preferenceIconSelector.forEach((el) => {
   el.addEventListener("click", (event) => {
@@ -274,8 +274,15 @@ preferenceIconSelector.forEach((el) => {
 // On input change event listener for mid section spinner
 
 spinnerSelector.addEventListener("change", async (e) => {
-  let weatherType = document.querySelector(".active img").alt.split(" ")[0];
-  dynamicCard(weatherType);
+  const spinnerValue = e.target.value;
+  if (spinnerValue > 10 || spinnerValue < 3) {
+    console.error("Please select values between 10 and 3");
+    if (spinnerValue < 3) spinnerSelector.value = 3;
+    else spinnerSelector.value = 10;
+  } else {
+    let weatherType = document.querySelector(".active img").alt.split(" ")[0];
+    dynamicCard(weatherType);
+  }
 });
 
 const getPrefereceWeatherDetails = async (weather) => {
@@ -348,7 +355,10 @@ const dynamicCard = async (weatherType = "sunny") => {
     weatherType
   );
   const preferredWeatherCities = preferredWeatherCityDeatils.length;
-  const numberOfCards = Math.min(preferredWeatherCities, spinnerSelector.value);
+  const numberOfCards = Math.min(
+    Math.min(preferredWeatherCities, spinnerSelector.value),
+    10
+  );
 
   let card = "";
   let customCardStyle = {};
@@ -366,7 +376,9 @@ const dynamicCard = async (weatherType = "sunny") => {
     const city_temp = preferredWeatherCityDeatils[i].temperature;
     const city_precipitation = preferredWeatherCityDeatils[i].precipitation;
     const weatherType = activePreferenceIconSelector[0].alt.split(" ")[0];
+
     let weatherTypeIcon;
+
     switch (weatherType) {
       case "sunny":
         weatherTypeIcon = "sunnyIcon";
@@ -431,3 +443,32 @@ const dynamicCard = async (weatherType = "sunny") => {
     `;
   }
 };
+
+const carouselSlider = (e) => {
+  const cardsSelector = document.querySelectorAll(".card");
+  const cardsContainerSelector = document.querySelector(".carousel-container");
+  const clickedClassName = e.target.className;
+  let cardWidth = cardsSelector[1].clientWidth;
+
+  console.log(clickedClassName, cardWidth);
+
+  if (clickedClassName === "left-arrow" || clickedClassName === "left-icon") {
+    // cardWidth -= cardsSelector[1].clientWidth;
+    // console.log(cardWidth);
+    // cardsContainerSelector.style.right = cardWidth + "px";
+    // console.log(cardsContainerSelector.style.right);
+
+    cardsContainerSelector.scrollLeft -= cardWidth;
+  }
+  if (clickedClassName == "right-arrow" || clickedClassName == "right-icon") {
+    // cardWidth += cardsSelector[1].clientWidth;
+    // cardsContainerSelector.style.right = cardWidth + "px";
+    cardsContainerSelector.scrollLeft += cardWidth;
+  }
+};
+
+const leftArrowSelector = document.querySelector(".left-arrow");
+const rightArrowSelector = document.querySelector(".right-arrow");
+
+leftArrowSelector.addEventListener("click", carouselSlider);
+rightArrowSelector.addEventListener("click", carouselSlider);
