@@ -450,19 +450,10 @@ const carouselSlider = (e) => {
   const clickedClassName = e.target.className;
   let cardWidth = cardsSelector[1].clientWidth;
 
-  console.log(clickedClassName, cardWidth);
-
   if (clickedClassName === "left-arrow" || clickedClassName === "left-icon") {
-    // cardWidth -= cardsSelector[1].clientWidth;
-    // console.log(cardWidth);
-    // cardsContainerSelector.style.right = cardWidth + "px";
-    // console.log(cardsContainerSelector.style.right);
-
     cardsContainerSelector.scrollLeft -= cardWidth;
   }
   if (clickedClassName == "right-arrow" || clickedClassName == "right-icon") {
-    // cardWidth += cardsSelector[1].clientWidth;
-    // cardsContainerSelector.style.right = cardWidth + "px";
     cardsContainerSelector.scrollLeft += cardWidth;
   }
 };
