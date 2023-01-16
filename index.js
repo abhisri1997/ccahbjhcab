@@ -426,8 +426,6 @@ const dynamicCard = async (weatherType = "sunny") => {
     currentCardSelector.style.cssText = `
       background-color: var(--bg-dark-grey-tile);
       background-image: url("./../assets/CityIcons/${city_name}.svg");
-      background-size: 100%;
-      background-position: calc(100% + 5px) calc(100% + 35px);
       background-repeat: no-repeat;
       background-blend-mode: screen;
     `;
