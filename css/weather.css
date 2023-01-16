@@ -314,8 +314,8 @@ body {
   display: flex;
   background-color: var(--bg-dark-grey-tile);
   background-image: url("./../assets/CityIcons/london.svg");
-  background-size: 100%;
-  background-position: calc(100% + 5px) calc(100% + 35px);
+  background-size: 60%;
+  background-position: calc(100% - 10px) calc(100% - 5px);
   background-repeat: no-repeat;
   background-blend-mode: screen;
   justify-content: space-between;
