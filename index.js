@@ -1,5 +1,6 @@
 import getWeatherData from "./WeatherData.js";
 import monthMatch from "./monthMatch.js";
+import getPopularContinentCities from "./js/popularContinentCities.js";
 
 const cityInputSelector = document.querySelector(
   ".city-selector > input[type=text]"
@@ -10,6 +11,8 @@ const preferenceIconSelector = document.querySelectorAll(
 );
 
 const spinnerSelector = document.querySelector("#top-picker");
+
+const continentCardSelector = document.querySelector(".continent-temp-data");
 
 let activeElementSelector = document.querySelector(".active");
 
@@ -65,7 +68,7 @@ const setCityIcon = (cityName) => {
  * @param {string} dateTime
  * @return {Array}
  */
-const getCityDateAndTime = (dateTime) => {
+export const getCityDateAndTime = (dateTime) => {
   const dateAndTime = dateTime.split(",");
 
   let date = dateAndTime[0].split("/")[1];
@@ -247,6 +250,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   setCityInfo(allCities[0]);
   setCitySelector();
   dynamicCard("sunny");
+  dynamicContinentCard();
 });
 
 // On Input change event listener for top section when city name changes
@@ -285,7 +289,7 @@ spinnerSelector.addEventListener("change", async (e) => {
   }
 });
 
-const getPrefereceWeatherDetails = async (weather) => {
+const getPrefereceWeatherDetails = async (weatherType) => {
   const weatherDetails = await getWeatherData();
   const response = [];
 
@@ -296,7 +300,7 @@ const getPrefereceWeatherDetails = async (weather) => {
 
     if (
       weatherConditionCheck(
-        weather,
+        weatherType,
         temperatureCheck,
         humidityCheck,
         precipitationCheck
@@ -463,3 +467,53 @@ const rightArrowSelector = document.querySelector(".right-arrow");
 
 leftArrowSelector.addEventListener("click", carouselSlider);
 rightArrowSelector.addEventListener("click", carouselSlider);
+
+const dynamicContinentCard = async () => {
+  let continentCardHTML = "";
+  const popularContinentDetails = await getPopularContinentCities();
+
+  for (let [key, value] of popularContinentDetails.entries()) {
+    value.forEach((continentCity) => {
+      const {
+        continentName,
+        cityName,
+        cityTime,
+        cityTemperature,
+        cityHumidity,
+      } = continentCity;
+
+      continentCardHTML += `
+        <div class="continent-card">
+
+          <div class="continent-details">
+
+            <h4 class="continent-name">${continentName}</h4>
+
+              <span class="continent-city-time">
+
+                <h5 class="continent-city">${cityName}</h5>
+                <h5 class="continent-time">, ${cityTime}</h5>
+
+              </span>
+
+          </div>
+
+          <div class="continent-temp-details">
+
+            <h4 class="city-temperature">${cityTemperature}</h4>
+
+            <div class="city-precipitation">
+
+              <img src="./assets/WeatherIcons/humidityIcon.svg" alt="" class="card-icon" loading="lazy">
+              <h6>${cityHumidity}</h6>
+
+            </div>
+
+          </div>
+
+        </div>
+      `;
+    });
+  }
+  continentCardSelector.innerHTML = continentCardHTML;
+};
