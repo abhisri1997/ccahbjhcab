@@ -14,13 +14,17 @@ const spinnerSelector = document.querySelector("#top-picker");
 
 const continentCardSelector = document.querySelector(".continent-temp-data");
 
+const carouselSelector = document.querySelector(".carousel-container");
+
+const leftArrowSelector = document.querySelector(".left-arrow");
+
+const rightArrowSelector = document.querySelector(".right-arrow");
+
 let activeElementSelector = document.querySelector(".active");
 
 let activePreferenceIconSelector = document.querySelectorAll(
   ".active > .icons > img"
 );
-
-const carouselSelector = document.querySelector(".carousel-container");
 
 let sortContinetByContinentNameSelector = document.querySelector(
   ".sort-continent_name"
@@ -248,6 +252,12 @@ const setCitySelector = async () => {
   city_selector.innerHTML = options;
 };
 
+/**
+ * Get all weather data for the preferred weather type
+ *
+ * @param {string} weatherType - Type of weather
+ * @return {[]}
+ */
 const getPrefereceWeatherDetails = async (weatherType) => {
   const weatherDetails = await getWeatherData();
   const response = [];
@@ -272,13 +282,22 @@ const getPrefereceWeatherDetails = async (weatherType) => {
   return response;
 };
 
+/**
+ * Returns true if the provided checks are successful for the provided weather type
+ *
+ * @param {string} weatherType - Type of weather to check, example "sunny", "rainy", etc.
+ * @param {Number} temperatureCheck - Temperature in Celsius to check for given weather type
+ * @param {Number} humidityCheck - Humidity in percentage to check for given weather type
+ * @param {Number} precipitationCheck - Precipitation in percentage to check for given weather type
+ * @returns {boolean}
+ */
 const weatherConditionCheck = (
-  weather,
+  weatherType,
   temperatureCheck,
   humidityCheck,
   precipitationCheck
 ) => {
-  switch (weather) {
+  switch (weatherType) {
     case "sunny":
       if (
         temperatureCheck >= 29 &&
@@ -304,12 +323,18 @@ const weatherConditionCheck = (
       }
       break;
     default:
-      console.error("Unknown weather condition: " + weather);
+      console.error("Unknown weather type condition: " + weatherType);
   }
 
   return false;
 };
 
+/**
+ * Generates dynamic weather carousel cards based on the weather conditions provided
+ *
+ * @param {string} [weatherType="sunny"] - Weather condition, default is "sunny"
+ * @returns {null}
+ */
 const dynamicCard = async (weatherType = "sunny") => {
   activePreferenceIconSelector = document.querySelectorAll(
     ".active > .icons > img"
@@ -407,6 +432,11 @@ const dynamicCard = async (weatherType = "sunny") => {
   }
 };
 
+/**
+ * Slides the cards left and right
+ *
+ * @param {Object} e - event parameter when left/right arrows are clicked
+ */
 const carouselSlider = (e) => {
   const cardsSelector = document.querySelectorAll(".card");
   const cardsContainerSelector = document.querySelector(".carousel-container");
@@ -421,12 +451,12 @@ const carouselSlider = (e) => {
   }
 };
 
-const leftArrowSelector = document.querySelector(".left-arrow");
-const rightArrowSelector = document.querySelector(".right-arrow");
-
-leftArrowSelector.addEventListener("click", carouselSlider);
-rightArrowSelector.addEventListener("click", carouselSlider);
-
+/**
+ * Dynamically generate card for bottom section of the UI
+ *
+ * @param {Map<string, [Object]} popularContinentDetails - Map of continents and it's popular cities
+ * @returns {null}
+ */
 const dynamicContinentCard = async (popularContinentDetails) => {
   let continentCardHTML = "";
 
@@ -476,6 +506,12 @@ const dynamicContinentCard = async (popularContinentDetails) => {
   continentCardSelector.innerHTML = continentCardHTML;
 };
 
+/**
+ * Sorth the weather data according to the continent name
+ *
+ * @param {boolean} ascendingSort - boolean value to sort the output ascending or descending
+ * @return {Map<String, [Object]>} Sorted Map
+ */
 const sortContinentByName = async (ascendingSort) => {
   const popularContinentDetails = await getPopularContinentCities();
   let sortedMap = new Map();
@@ -494,6 +530,13 @@ const sortContinentByName = async (ascendingSort) => {
   return sortedMap;
 };
 
+/**
+ * Sorth the provided weather data according to the temperature
+ *
+ * @param {Map<string, [Object]>} weatherData - Map of continents and it's popular cities weather info
+ * @param {boolean} ascendingSort - boolean value to sort the output ascending or descending
+ * @return {Map<string, [Object]>}  Sorted Map
+ */
 const sortContinentByTemperature = async (weatherData, ascendingSort) => {
   let sortedMap = new Map();
 
@@ -572,6 +615,11 @@ spinnerSelector.addEventListener("change", async (e) => {
     dynamicCard(weatherType);
   }
 });
+
+// Left and right carousel button event Listeners
+
+leftArrowSelector.addEventListener("click", carouselSlider);
+rightArrowSelector.addEventListener("click", carouselSlider);
 
 // Event listener to handle sorting of continent cards based on continent name
 
