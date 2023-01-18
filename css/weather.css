@@ -11,6 +11,7 @@ html {
 
 body {
   letter-spacing: 1.5px;
+  scroll-behavior: smooth;
 }
 
 .container {
@@ -212,6 +213,7 @@ body {
   align-items: center;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 .status-bar-title {
@@ -315,6 +317,7 @@ body {
 }
 
 .card {
+  flex: 1;
   padding: 0.5rem 0.8rem;
   margin: 0 auto;
   transition: all 0.5s ease;
@@ -461,11 +464,18 @@ body {
 
   .card {
     flex-wrap: wrap;
+    min-width: 47%;
   }
 
-  .card-3,
+  /* .card-3,
   .card-4 {
     display: none;
+  } */
+
+  .left-arrow,
+  .right-arrow {
+    top: 22%;
+    right: 5%;
   }
 
   .continent-temp-data {

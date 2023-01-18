@@ -22,6 +22,12 @@ let activePreferenceIconSelector = document.querySelectorAll(
 
 const carouselSelector = document.querySelector(".carousel-container");
 
+let sortContinetByContinentNameSelector = document.querySelector(
+  ".sort-continent_name"
+);
+
+let sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
+
 /**
  * Takes city name and initializes the top section with the specified weather information received for particular city.
  *
@@ -242,53 +248,6 @@ const setCitySelector = async () => {
   city_selector.innerHTML = options;
 };
 
-//Event Listener for first page load.
-
-window.addEventListener("DOMContentLoaded", async () => {
-  const allCities = await getAllCities();
-
-  setCityInfo(allCities[0]);
-  setCitySelector();
-  dynamicCard("sunny");
-  dynamicContinentCard();
-});
-
-// On Input change event listener for top section when city name changes
-
-cityInputSelector.addEventListener("input", async () => {
-  let currentCityValue = cityInputSelector.value;
-  const allCities = await getAllCities();
-
-  if (allCities.includes(currentCityValue)) setCityInfo(currentCityValue);
-});
-
-// Event listeners for all the icons in middle section of the UI.
-
-preferenceIconSelector.forEach((el) => {
-  el.addEventListener("click", (event) => {
-    const weatherType = event.target.alt.split(" ")[0];
-    console.log(weatherType);
-    activeElementSelector = document.querySelector(".active");
-    activeElementSelector.classList.remove("active");
-    el.parentElement.classList.add("active");
-    dynamicCard(weatherType);
-  });
-});
-
-// On input change event listener for mid section spinner
-
-spinnerSelector.addEventListener("change", async (e) => {
-  const spinnerValue = e.target.value;
-  if (spinnerValue > 10 || spinnerValue < 3) {
-    console.error("Please select values between 10 and 3");
-    if (spinnerValue < 3) spinnerSelector.value = 3;
-    else spinnerSelector.value = 10;
-  } else {
-    let weatherType = document.querySelector(".active img").alt.split(" ")[0];
-    dynamicCard(weatherType);
-  }
-});
-
 const getPrefereceWeatherDetails = async (weatherType) => {
   const weatherDetails = await getWeatherData();
   const response = [];
@@ -468,9 +427,8 @@ const rightArrowSelector = document.querySelector(".right-arrow");
 leftArrowSelector.addEventListener("click", carouselSlider);
 rightArrowSelector.addEventListener("click", carouselSlider);
 
-const dynamicContinentCard = async () => {
+const dynamicContinentCard = async (popularContinentDetails) => {
   let continentCardHTML = "";
-  const popularContinentDetails = await getPopularContinentCities();
 
   for (let [key, value] of popularContinentDetails.entries()) {
     value.forEach((continentCity) => {
@@ -517,3 +475,158 @@ const dynamicContinentCard = async () => {
   }
   continentCardSelector.innerHTML = continentCardHTML;
 };
+
+const sortContinentByName = async (ascendingSort) => {
+  const popularContinentDetails = await getPopularContinentCities();
+  let sortedMap = new Map();
+  const sortedArray = Array.from(popularContinentDetails).sort((a, b) => {
+    if (ascendingSort) {
+      return a[0].localeCompare(b[0]);
+    } else {
+      return b[0].localeCompare(a[0]);
+    }
+  });
+
+  for (let [key, value] of sortedArray) {
+    sortedMap.set(key, value);
+  }
+
+  return sortedMap;
+};
+
+const sortContinentByTemperature = async (weatherData, ascendingSort) => {
+  let sortedMap = new Map();
+
+  let mapToArray = Array.from(weatherData);
+
+  mapToArray.forEach((key) => {
+    key[1].sort((a, b) => {
+      const tempA = parseInt(a.cityTemperature);
+      const tempB = parseInt(b.cityTemperature);
+      if (ascendingSort) {
+        return tempA - tempB;
+      } else {
+        return tempB - tempA;
+      }
+    });
+  });
+
+  for (let [key, value] of mapToArray) {
+    sortedMap.set(key, value);
+  }
+
+  return sortedMap;
+};
+
+//Event Listener for first page load.
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const allCities = await getAllCities();
+
+  setCityInfo(allCities[0]);
+  setCitySelector();
+  dynamicCard("sunny");
+  let sortedPopularContinentCities = await sortContinentByName(true);
+  const isSortedAscending = false;
+  sortedPopularContinentCities = await sortContinentByTemperature(
+    sortedPopularContinentCities,
+    isSortedAscending
+  );
+  console.log(sortedPopularContinentCities);
+  dynamicContinentCard(sortedPopularContinentCities);
+});
+
+// On Input change event listener for top section when city name changes
+
+cityInputSelector.addEventListener("input", async () => {
+  let currentCityValue = cityInputSelector.value;
+  const allCities = await getAllCities();
+
+  if (allCities.includes(currentCityValue)) setCityInfo(currentCityValue);
+});
+
+// Event listeners for all the icons in middle section of the UI.
+
+preferenceIconSelector.forEach((el) => {
+  el.addEventListener("click", (event) => {
+    event.preventDefault();
+    const weatherType = event.target.alt.split(" ")[0];
+    console.log(weatherType);
+    activeElementSelector = document.querySelector(".active");
+    activeElementSelector.classList.remove("active");
+    el.parentElement.classList.add("active");
+    dynamicCard(weatherType);
+  });
+});
+
+// On input change event listener for mid section spinner
+
+spinnerSelector.addEventListener("change", async (e) => {
+  const spinnerValue = e.target.value;
+  if (spinnerValue > 10 || spinnerValue < 3) {
+    console.error("Please select values between 10 and 3");
+    if (spinnerValue < 3) spinnerSelector.value = 3;
+    else spinnerSelector.value = 10;
+  } else {
+    let weatherType = document.querySelector(".active img").alt.split(" ")[0];
+    dynamicCard(weatherType);
+  }
+});
+
+// Event listener to handle sorting of continent cards based on continent name
+
+sortContinetByContinentNameSelector.addEventListener("click", async (e) => {
+  e.preventDefault();
+  let ascendingSort =
+    e.target.nextElementSibling.alt === "sort_up" ? true : false;
+
+  if (ascendingSort) {
+    e.target.nextElementSibling.alt = "sort_down";
+    e.target.nextElementSibling.src = "./assets/Images_Icons/arrowDown.svg";
+    ascendingSort = false;
+  } else {
+    e.target.nextElementSibling.alt = "sort_up";
+    e.target.nextElementSibling.src = "./assets/Images_Icons/arrowUp.svg";
+    ascendingSort = true;
+  }
+
+  let sortedMap = await sortContinentByName(ascendingSort);
+  sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
+  const continentAscendingTempSort =
+    sortByContinentTemperatureSelector.querySelector("img").alt === "sort_up"
+      ? true
+      : false;
+  sortedMap = await sortContinentByTemperature(
+    sortedMap,
+    continentAscendingTempSort
+  );
+  dynamicContinentCard(sortedMap);
+});
+
+// Event listener to handle sorting of continent cards based on continent city temperature
+
+sortByContinentTemperatureSelector.addEventListener("click", async (e) => {
+  e.preventDefault();
+  let ascendingSort =
+    e.target.nextElementSibling.alt === "sort_up" ? true : false;
+
+  if (ascendingSort) {
+    e.target.nextElementSibling.alt = "sort_down";
+    e.target.nextElementSibling.src = "./assets/Images_Icons/arrowDown.svg";
+    ascendingSort = false;
+  } else {
+    e.target.nextElementSibling.alt = "sort_up";
+    e.target.nextElementSibling.src = "./assets/Images_Icons/arrowUp.svg";
+    ascendingSort = true;
+  }
+  sortContinetByContinentNameSelector = document.querySelector(
+    ".sort-continent_name"
+  );
+  const continentAscendingContinentSort =
+    sortContinetByContinentNameSelector.querySelector("img").alt === "sort_up"
+      ? true
+      : false;
+  let sortedMap = await sortContinentByName(continentAscendingContinentSort);
+  sortedMap = await sortContinentByTemperature(sortedMap, ascendingSort);
+  dynamicContinentCard(sortedMap);
+});
