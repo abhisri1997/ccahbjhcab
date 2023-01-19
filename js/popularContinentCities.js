@@ -2,9 +2,9 @@ import getAllContinents from "./allContinents.js";
 import getWeatherData from "../WeatherData.js";
 import { getCityDateAndTime } from "./../index.js";
 
-const getPopularContinentCities = async () => {
-  const weatherData = await getWeatherData();
-  const allContinents = await getAllContinents(weatherData);
+const getPopularContinentCities = () => {
+  const weatherData = getWeatherData();
+  const allContinents = getAllContinents(weatherData);
   const continentCityMap = new Map();
 
   for (let continent of allContinents) {

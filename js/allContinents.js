@@ -1,4 +1,4 @@
-const getAllContinents = async (weatherData) => {
+const getAllContinents = (weatherData) => {
   const allContinentsSet = new Set();
 
   for (let city in weatherData) {

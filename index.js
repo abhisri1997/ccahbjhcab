@@ -37,9 +37,9 @@ let sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
  *
  * @param {string} city
  */
-const setCityInfo = async (city) => {
+const setCityInfo = (city) => {
   const cityName = city;
-  const weatherData = await getWeatherData();
+  const weatherData = getWeatherData();
 
   const cityData = {
     temperature: weatherData[cityName].temperature,
@@ -221,8 +221,8 @@ const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
  *
  * @return {Array} Array of cities
  */
-const getAllCities = async () => {
-  const weatherData = await getWeatherData();
+const getAllCities = () => {
+  const weatherData = getWeatherData();
   const allCities = [];
 
   for (let city in weatherData) {
@@ -238,9 +238,9 @@ const getAllCities = async () => {
  * Sets the input selector data from the api
  *
  */
-const setCitySelector = async () => {
-  const weatherData = await getWeatherData();
-  const allCities = await getAllCities();
+const setCitySelector = () => {
+  const weatherData = getWeatherData();
+  const allCities = getAllCities();
 
   const city_selector = document.getElementById("cityName");
   let options = "";
@@ -258,8 +258,8 @@ const setCitySelector = async () => {
  * @param {string} weatherType - Type of weather
  * @return {[]}
  */
-const getPrefereceWeatherDetails = async (weatherType) => {
-  const weatherDetails = await getWeatherData();
+const getPrefereceWeatherDetails = (weatherType) => {
+  const weatherDetails = getWeatherData();
   const response = [];
 
   for (let city in weatherDetails) {
@@ -335,13 +335,11 @@ const weatherConditionCheck = (
  * @param {string} [weatherType="sunny"] - Weather condition, default is "sunny"
  * @returns {null}
  */
-const dynamicCard = async (weatherType = "sunny") => {
+const dynamicCard = (weatherType = "sunny") => {
   activePreferenceIconSelector = document.querySelectorAll(
     ".active > .icons > img"
   );
-  const preferredWeatherCityDeatils = await getPrefereceWeatherDetails(
-    weatherType
-  );
+  const preferredWeatherCityDeatils = getPrefereceWeatherDetails(weatherType);
   const preferredWeatherCities = preferredWeatherCityDeatils.length;
   const numberOfCards = Math.min(
     Math.min(preferredWeatherCities, spinnerSelector.value),
@@ -457,7 +455,7 @@ const carouselSlider = (e) => {
  * @param {Map<string, [Object]} popularContinentDetails - Map of continents and it's popular cities
  * @returns {null}
  */
-const dynamicContinentCard = async (popularContinentDetails) => {
+const dynamicContinentCard = (popularContinentDetails) => {
   let continentCardHTML = "";
 
   for (let [key, value] of popularContinentDetails.entries()) {
@@ -512,8 +510,8 @@ const dynamicContinentCard = async (popularContinentDetails) => {
  * @param {boolean} ascendingSort - boolean value to sort the output ascending or descending
  * @return {Map<String, [Object]>} Sorted Map
  */
-const sortContinentByName = async (ascendingSort) => {
-  const popularContinentDetails = await getPopularContinentCities();
+const sortContinentByName = (ascendingSort) => {
+  const popularContinentDetails = getPopularContinentCities();
   let sortedMap = new Map();
   const sortedArray = Array.from(popularContinentDetails).sort((a, b) => {
     if (ascendingSort) {
@@ -537,7 +535,7 @@ const sortContinentByName = async (ascendingSort) => {
  * @param {boolean} ascendingSort - boolean value to sort the output ascending or descending
  * @return {Map<string, [Object]>}  Sorted Map
  */
-const sortContinentByTemperature = async (weatherData, ascendingSort) => {
+const sortContinentByTemperature = (weatherData, ascendingSort) => {
   let sortedMap = new Map();
 
   let mapToArray = Array.from(weatherData);
@@ -563,15 +561,15 @@ const sortContinentByTemperature = async (weatherData, ascendingSort) => {
 
 //Event Listener for first page load.
 
-window.addEventListener("DOMContentLoaded", async () => {
-  const allCities = await getAllCities();
+window.addEventListener("DOMContentLoaded", () => {
+  const allCities = getAllCities();
 
   setCityInfo(allCities[0]);
   setCitySelector();
   dynamicCard("sunny");
-  let sortedPopularContinentCities = await sortContinentByName(true);
+  let sortedPopularContinentCities = sortContinentByName(true);
   const isSortedAscending = false;
-  sortedPopularContinentCities = await sortContinentByTemperature(
+  sortedPopularContinentCities = sortContinentByTemperature(
     sortedPopularContinentCities,
     isSortedAscending
   );
@@ -581,9 +579,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 // On Input change event listener for top section when city name changes
 
-cityInputSelector.addEventListener("input", async () => {
+cityInputSelector.addEventListener("input", () => {
   let currentCityValue = cityInputSelector.value;
-  const allCities = await getAllCities();
+  const allCities = getAllCities();
 
   if (allCities.includes(currentCityValue)) setCityInfo(currentCityValue);
 });
@@ -604,7 +602,7 @@ preferenceIconSelector.forEach((el) => {
 
 // On input change event listener for mid section spinner
 
-spinnerSelector.addEventListener("change", async (e) => {
+spinnerSelector.addEventListener("change", (e) => {
   const spinnerValue = e.target.value;
   if (spinnerValue > 10 || spinnerValue < 3) {
     console.error("Please select values between 10 and 3");
@@ -623,7 +621,7 @@ rightArrowSelector.addEventListener("click", carouselSlider);
 
 // Event listener to handle sorting of continent cards based on continent name
 
-sortContinetByContinentNameSelector.addEventListener("click", async (e) => {
+sortContinetByContinentNameSelector.addEventListener("click", (e) => {
   e.preventDefault();
   let ascendingSort =
     e.target.nextElementSibling.alt === "sort_up" ? true : false;
@@ -638,22 +636,19 @@ sortContinetByContinentNameSelector.addEventListener("click", async (e) => {
     ascendingSort = true;
   }
 
-  let sortedMap = await sortContinentByName(ascendingSort);
+  let sortedMap = sortContinentByName(ascendingSort);
   sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
   const continentAscendingTempSort =
     sortByContinentTemperatureSelector.querySelector("img").alt === "sort_up"
       ? true
       : false;
-  sortedMap = await sortContinentByTemperature(
-    sortedMap,
-    continentAscendingTempSort
-  );
+  sortedMap = sortContinentByTemperature(sortedMap, continentAscendingTempSort);
   dynamicContinentCard(sortedMap);
 });
 
 // Event listener to handle sorting of continent cards based on continent city temperature
 
-sortByContinentTemperatureSelector.addEventListener("click", async (e) => {
+sortByContinentTemperatureSelector.addEventListener("click", (e) => {
   e.preventDefault();
   let ascendingSort =
     e.target.nextElementSibling.alt === "sort_up" ? true : false;
@@ -674,7 +669,7 @@ sortByContinentTemperatureSelector.addEventListener("click", async (e) => {
     sortContinetByContinentNameSelector.querySelector("img").alt === "sort_up"
       ? true
       : false;
-  let sortedMap = await sortContinentByName(continentAscendingContinentSort);
-  sortedMap = await sortContinentByTemperature(sortedMap, ascendingSort);
+  let sortedMap = sortContinentByName(continentAscendingContinentSort);
+  sortedMap = sortContinentByTemperature(sortedMap, ascendingSort);
   dynamicContinentCard(sortedMap);
 });
