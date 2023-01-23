@@ -1,5 +1,5 @@
 import getAllContinents from "./allContinents.js";
-import getWeatherData from "../WeatherData.js";
+import getWeatherData from "./WeatherData.js";
 import { getCityDateAndTime } from "./../index.js";
 
 const getPopularContinentCities = () => {

@@ -1,5 +1,5 @@
-import getWeatherData from "./WeatherData.js";
-import monthMatch from "./monthMatch.js";
+import getWeatherData from "./js/WeatherData.js";
+import monthMatch from "./js/monthMatch.js";
 import getPopularContinentCities from "./js/popularContinentCities.js";
 
 const cityInputSelector = document.querySelector(
@@ -586,6 +586,10 @@ cityInputSelector.addEventListener("input", () => {
   const allCities = getAllCities();
 
   if (allCities.includes(currentCityValue)) setCityInfo(currentCityValue);
+});
+
+cityInputSelector.addEventListener("click", (e) => {
+  e.target.value = "";
 });
 
 // Event listeners for all the icons in middle section of the UI.

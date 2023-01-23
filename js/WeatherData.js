@@ -1,4 +1,4 @@
-import data from "./assets/data/data.js";
+import data from "./../assets/data/data.js";
 
 /**
  * Returns weather information in json format
