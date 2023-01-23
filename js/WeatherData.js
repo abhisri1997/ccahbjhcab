@@ -1,7 +1,7 @@
 import data from "./../assets/data/data.js";
 
 /**
- * Returns weather information in json format
+ * Returns weather information in object format
  *
  * @return {json} JSON representation
  */

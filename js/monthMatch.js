@@ -1,3 +1,8 @@
+/**
+ * Matches the given month number with the month
+ *
+ * @type {Object}
+ * */
 const monthMatch = {
   1: "Jan",
   2: "Feb",

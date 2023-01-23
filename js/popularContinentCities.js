@@ -2,6 +2,11 @@ import getAllContinents from "./allContinents.js";
 import getWeatherData from "./WeatherData.js";
 import { getCityDateAndTime } from "./../index.js";
 
+/**
+ * Returns a list of popular cities with their weather data
+ *
+ * @return {Map<string, []}  returns a map of city and it's weather data
+ */
 const getPopularContinentCities = () => {
   const weatherData = getWeatherData();
   const allContinents = getAllContinents(weatherData);
