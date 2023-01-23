@@ -11,7 +11,6 @@ export const dynamicContinentCard = (popularContinentDetails) => {
   let counter = 0;
 
   for (let [key, value] of popularContinentDetails.entries()) {
-    console.log(key, value);
     value.forEach((continentCity) => {
       const {
         continentName,
@@ -34,8 +33,8 @@ export const dynamicContinentCard = (popularContinentDetails) => {
 
               <span class="continent-city-time">
 
-                <h5 class="continent-city">${cityName}</h5>
-                <h5 class="continent-time">, ${cityTime}</h5>
+                <h5 class="continent-city">${cityName}, &nbsp</h5>
+                <h5 class="continent-time">${cityTime}</h5>
 
               </span>
 
