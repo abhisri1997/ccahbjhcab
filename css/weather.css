@@ -55,13 +55,6 @@ body {
 
 .city-selector {
   flex: 2;
-  /* padding: 0.6rem 0.8rem;
-  border: 0;
-  background-color: rgba(131, 131, 131, 0.25);
-  font-weight: 200;
-  font-size: clamp(1rem, calc(1.2rem + 1.2vw), 1.5rem);
-  line-height: 2rem;
-  color: whitesmoke; */
 }
 
 .city-selector input[type="text"] {
@@ -317,7 +310,6 @@ body {
 }
 
 .card {
-  flex: 1;
   padding: 0.5rem 0.8rem;
   margin: 0 auto;
   transition: all 0.5s ease;
