@@ -39,7 +39,7 @@ let sortContinetByContinentNameSelector = document.querySelector(
 
 let sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
 
-//IIFEE for first page load.
+//IIFE for first page load.
 
 (() => {
   const allCities = getAllCities();
