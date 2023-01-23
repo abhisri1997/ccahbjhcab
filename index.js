@@ -459,8 +459,10 @@ const carouselSlider = (e) => {
  */
 const dynamicContinentCard = (popularContinentDetails) => {
   let continentCardHTML = "";
+  let counter = 0;
 
   for (let [key, value] of popularContinentDetails.entries()) {
+    console.log(key, value);
     value.forEach((continentCity) => {
       const {
         continentName,
@@ -470,7 +472,11 @@ const dynamicContinentCard = (popularContinentDetails) => {
         cityHumidity,
       } = continentCity;
 
-      continentCardHTML += `
+      counter++;
+
+      continentCardHTML +=
+        counter < 13
+          ? `
         <div class="continent-card">
 
           <div class="continent-details">
@@ -500,7 +506,8 @@ const dynamicContinentCard = (popularContinentDetails) => {
           </div>
 
         </div>
-      `;
+      `
+          : "";
     });
   }
   continentCardSelector.innerHTML = continentCardHTML;

@@ -32,7 +32,7 @@ const getPopularContinentCities = () => {
       cityHumidity: weatherData[city].humidity,
     };
 
-    if (continent !== "Pacific" && eachContinentCityNumber < 2) {
+    if (eachContinentCityNumber < 2) {
       const currentContinent = continentCityMap.get(continent);
       currentContinent.push(cityWeather);
       continentCityMap.set(continent, currentContinent);
