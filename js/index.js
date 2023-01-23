@@ -39,9 +39,9 @@ let sortContinetByContinentNameSelector = document.querySelector(
 
 let sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
 
-//Event Listener for first page load.
+//IIFEE for first page load.
 
-window.addEventListener("DOMContentLoaded", () => {
+(() => {
   const allCities = getAllCities();
 
   setCityInfo(allCities[0]);
@@ -55,7 +55,7 @@ window.addEventListener("DOMContentLoaded", () => {
   );
   console.log(sortedPopularContinentCities);
   dynamicContinentCard(sortedPopularContinentCities);
-});
+})();
 
 // On Input change event listener for top section when city name changes
 
