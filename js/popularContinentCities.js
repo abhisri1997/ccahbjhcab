@@ -1,6 +1,6 @@
 import getAllContinents from "./allContinents.js";
 import getWeatherData from "./WeatherData.js";
-import { getCityDateAndTime } from "./../index.js";
+import { getCityDateAndTime } from "./getCityDateAndTime.js";
 
 /**
  * Returns a list of popular cities with their weather data
