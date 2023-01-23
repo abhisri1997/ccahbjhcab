@@ -7,7 +7,7 @@ import {
   sortContinentByTemperature,
 } from "./sortContinent.js";
 
-export const cityInputSelector = document.querySelector(
+export let cityInputSelector = document.querySelector(
   ".city-selector > input[type=text]"
 );
 
@@ -53,17 +53,25 @@ let sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
     sortedPopularContinentCities,
     isSortedAscending
   );
-  console.log(sortedPopularContinentCities);
+
   dynamicContinentCard(sortedPopularContinentCities);
 })();
 
 // On Input change event listener for top section when city name changes
 
-cityInputSelector.addEventListener("input", () => {
+cityInputSelector.addEventListener("change", (e) => {
+  cityInputSelector = document.querySelector(
+    ".city-selector > input[type=text]"
+  );
   let currentCityValue = cityInputSelector.value;
   const allCities = getAllCities();
 
-  if (allCities.includes(currentCityValue)) setCityInfo(currentCityValue);
+  if (allCities.includes(currentCityValue)) {
+    setCityInfo(currentCityValue);
+  } else {
+    alert("Please input correct city name");
+    e.target.value = "";
+  }
 });
 
 cityInputSelector.addEventListener("click", (e) => {
@@ -76,10 +84,11 @@ preferenceIconSelector.forEach((el) => {
   el.addEventListener("click", (event) => {
     event.preventDefault();
     const weatherType = event.target.alt.split(" ")[0];
-    console.log(weatherType);
     activeElementSelector = document.querySelector(".active");
+
     activeElementSelector.classList.remove("active");
     el.parentElement.classList.add("active");
+
     dynamicCard(weatherType);
   });
 });
