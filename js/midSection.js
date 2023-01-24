@@ -1,6 +1,7 @@
 import getWeatherData from "./WeatherData.js";
 import { getCityDateAndTime } from "./getCityDateAndTime.js";
 import { spinnerSelector, carouselSelector } from "./index.js";
+import LiveClock from "./LiveClock.js";
 
 let activePreferenceIconSelector = document.querySelectorAll(
   ".active > .icons > img"
@@ -137,7 +138,9 @@ export const dynamicCard = (weatherType = "sunny") => {
             <div class="card-details">
 
               <h2 class="city-name">${city_name}</h2>
-              <h3 class="current-time">${city_time}</h3>
+              <h3 class="current-time" id="mid-section-time-${
+                i + 1
+              }">${city_time}</h3>
               <h3 class="current-date">${city_date}</h3>
 
               <div class="card-humidity">
@@ -172,6 +175,13 @@ export const dynamicCard = (weatherType = "sunny") => {
     const currentCard = `card-${i + 1}`;
     const city_name = preferredWeatherCityDeatils[i].cityName.toLowerCase();
     const currentCardSelector = document.querySelector(`.${currentCard}`);
+    const currentCardID = `mid-section-time-${i + 1}`;
+    const currentCardTimeElement = document.querySelector(`#${currentCardID}`);
+    const currentTime =
+      currentCardTimeElement.innerHTML.split(" ")[0] + ":" + "58";
+
+    const bottomSectionLiveClock = new LiveClock();
+    bottomSectionLiveClock.liveClock(currentTime, currentCardTimeElement);
 
     currentCardSelector.style.cssText = `
       background-color: var(--bg-dark-grey-tile);

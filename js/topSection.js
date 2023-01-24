@@ -2,6 +2,9 @@ import getWeatherData from "./WeatherData.js";
 import { cityInputSelector } from "./index.js";
 import { getCityDateAndTime } from "./getCityDateAndTime.js";
 import getAllCities from "./getAllCities.js";
+import LiveClock from "./LiveClock.js";
+
+export const topSectionLiveClock = new LiveClock();
 
 /**
  * Takes city name and initializes the top section with the specified weather information received for particular city.
@@ -78,6 +81,10 @@ const setCityDateTime = (date, time, isAM) => {
 
   const timeSecondsElement = document.getElementsByClassName("city-second")[0];
   timeSecondsElement.innerHTML = ":" + time.split("-")[1];
+
+  const times = time.split("-")[0] + ":" + time.split("-")[1];
+
+  topSectionLiveClock.liveClock(times, document.querySelector(".time"));
 
   const dayIcon = "./assets/Images_Icons/amState.svg";
   const nightIcon = "./assets/Images_Icons/pmState.svg";
@@ -173,6 +180,4 @@ export const setCitySelector = () => {
   }
 
   city_selector.innerHTML = options;
-
-  setCityInfo(allCities[0]);
 };

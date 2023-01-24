@@ -1,11 +1,12 @@
 import { setCityInfo, setCitySelector } from "./topSection.js";
 import getAllCities from "./getAllCities.js";
 import { dynamicCard, carouselSlider } from "./midSection.js";
-import { dynamicContinentCard } from "./dynamicContinentCard.js";
+import { dynamicContinentCard } from "./bottomSection.js";
 import {
   sortContinentByName,
   sortContinentByTemperature,
 } from "./sortContinent.js";
+import { topSectionLiveClock } from "./topSection.js";
 
 export let cityInputSelector = document.querySelector(
   ".city-selector > input[type=text]"
@@ -67,6 +68,7 @@ cityInputSelector.addEventListener("change", (e) => {
   const allCities = getAllCities();
 
   if (allCities.includes(currentCityValue)) {
+    topSectionLiveClock.clearLiveClock();
     setCityInfo(currentCityValue);
   } else {
     alert("Please input correct city name");

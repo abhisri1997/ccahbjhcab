@@ -1,4 +1,5 @@
 import { continentCardSelector } from "./index.js";
+import LiveClock from "./LiveClock.js";
 
 /**
  * Dynamically generate card for bottom section of the UI
@@ -22,6 +23,8 @@ export const dynamicContinentCard = (popularContinentDetails) => {
 
       counter++;
 
+      let id = `bottom-section-time-${counter}`;
+
       continentCardHTML +=
         counter < 13
           ? `
@@ -34,7 +37,7 @@ export const dynamicContinentCard = (popularContinentDetails) => {
               <span class="continent-city-time">
 
                 <h5 class="continent-city">${cityName}, &nbsp</h5>
-                <h5 class="continent-time">${cityTime}</h5>
+                <h5 class="continent-time" id="${id}">${cityTime}</h5>
 
               </span>
 
@@ -59,4 +62,14 @@ export const dynamicContinentCard = (popularContinentDetails) => {
     });
   }
   continentCardSelector.innerHTML = continentCardHTML;
+  const allContinentCardSelectors =
+    document.querySelectorAll(".continent-card");
+
+  allContinentCardSelectors.forEach((continentCardHTML, counter) => {
+    let id = `bottom-section-time-${counter + 1}`;
+    let currentElement = document.querySelector(`#${id}`);
+    let cityTime = currentElement.innerHTML.split(" ")[0] + ":" + "55";
+    const bottomSectionLiveClock = new LiveClock();
+    bottomSectionLiveClock.liveClock(cityTime, currentElement);
+  });
 };
