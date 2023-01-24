@@ -1,6 +1,17 @@
+/**
+ * Genaerate live clock for the passed time and sets the time to the passed element
+ *
+ */
 function LiveClock() {
   this.clearLiveClockId;
 
+  /**
+   * Starts the live clock from the given time.
+   *
+   * @param {string} startTime
+   * @param {Object} element
+   *
+   */
   this.liveClock = (startTime, element) => {
     let currentTime = new Date();
     const [hours, minutes, seconds] = startTime.split(":");
@@ -21,6 +32,13 @@ function LiveClock() {
     this.setLiveClockId(liveClockID);
   };
 
+  /**
+   * Sets the live clock time to the provided DOM element
+   * @param {number} hh
+   * @param {number} mm
+   * @param {number} ss
+   * @param {Object} element - DOM element where live clock will be visible
+   */
   this.setLiveClock = (hh, mm, ss, element) => {
     if (hh == 0) {
       hh = 12;
@@ -59,6 +77,9 @@ function LiveClock() {
     return this.getLiveClockId();
   };
 
+  /**
+   * Clears previously generated live clock
+   */
   this.clearLiveClock = () => {
     clearInterval(this.clearLiveClockId);
   };
