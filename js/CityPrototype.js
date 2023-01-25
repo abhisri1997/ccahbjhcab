@@ -42,6 +42,10 @@ CityPrototype.prototype.getCityHumidity = function () {
   return this.humidity;
 };
 
+CityPrototype.prototype.getCityPrecipitation = function () {
+  return this.precipitation;
+};
+
 CityPrototype.prototype.getCityForecast = function () {
   return this.nextFiveHrs;
 };
