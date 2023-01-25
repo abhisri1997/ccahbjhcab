@@ -57,7 +57,7 @@ const setCityTemperature = (cityTemperature) => {
   const cityCelciusTemperatureElement =
     document.getElementsByClassName("city-temp-c")[0];
 
-  cityCelciusTemperatureElement.innerHTML = cityTemperature;
+  cityCelciusTemperatureElement.innerHTML = cityTemperature + "°C";
 
   const cityFarenheitTemperatureElement =
     document.getElementsByClassName("city-temp-f")[0];
@@ -156,12 +156,12 @@ const setForecastData = (forecast, currentTemp) => {
  */
 const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
   const humidityElement = document.getElementsByClassName("city-humidity")[0];
-  humidityElement.innerHTML = humidity;
+  humidityElement.innerHTML = humidity + "%";
 
   const precipitationElement = document.getElementsByClassName(
     "city-precipitation-top"
   )[0];
-  precipitationElement.innerHTML = precipitation;
+  precipitationElement.innerHTML = precipitation + "%";
 };
 
 /**

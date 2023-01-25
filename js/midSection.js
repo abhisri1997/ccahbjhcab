@@ -2,6 +2,7 @@ import getWeatherData from "./WeatherData.js";
 import { getCityDateAndTime } from "./getCityDateAndTime.js";
 import { spinnerSelector, carouselSelector } from "./index.js";
 import LiveClock from "./LiveClock.js";
+import CityPrototype from "./CityPrototype.js";
 
 let activePreferenceIconSelector = document.querySelectorAll(
   ".active > .icons > img"
@@ -18,9 +19,11 @@ const getPrefereceWeatherDetails = (weatherType) => {
   const response = [];
 
   for (let city in weatherDetails) {
-    const temperatureCheck = parseInt(weatherDetails[city].temperature);
-    const humidityCheck = parseInt(weatherDetails[city].humidity);
-    const precipitationCheck = parseInt(weatherDetails[city].precipitation);
+    const cityObj = new CityPrototype(city, weatherDetails);
+
+    const temperatureCheck = cityObj.getCityTemperature();
+    const humidityCheck = cityObj.getCityHumidity();
+    const precipitationCheck = cityObj.getCityPrecipitation();
 
     if (
       weatherConditionCheck(
@@ -173,15 +176,17 @@ export const dynamicCard = (weatherType = "sunny") => {
 
   for (let i = 0; i < numberOfCards; i++) {
     const currentCard = `card-${i + 1}`;
-    const city_name = preferredWeatherCityDeatils[i].cityName.toLowerCase();
+    const city_name = preferredWeatherCityDeatils[i].cityName
+      .replace(/\s/g, "")
+      .toLowerCase();
     const currentCardSelector = document.querySelector(`.${currentCard}`);
     const currentCardID = `mid-section-time-${i + 1}`;
     const currentCardTimeElement = document.querySelector(`#${currentCardID}`);
     const currentTime =
       currentCardTimeElement.innerHTML.split(" ")[0] + ":" + "58";
 
-    const bottomSectionLiveClock = new LiveClock();
-    bottomSectionLiveClock.liveClock(currentTime, currentCardTimeElement);
+    const midSectionLiveClock = new LiveClock();
+    midSectionLiveClock.liveClock(currentTime, currentCardTimeElement);
 
     currentCardSelector.style.cssText = `
       background-color: var(--bg-dark-grey-tile);

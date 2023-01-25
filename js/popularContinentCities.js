@@ -1,6 +1,7 @@
 import getAllContinents from "./allContinents.js";
 import getWeatherData from "./WeatherData.js";
 import { getCityDateAndTime } from "./getCityDateAndTime.js";
+import CityPrototype from "./CityPrototype.js";
 
 /**
  * Returns a list of popular cities with their weather data
@@ -17,19 +18,18 @@ const getPopularContinentCities = () => {
   }
 
   for (let city in weatherData) {
-    const continent = weatherData[city].timeZone.split("/")[0];
+    const cityObj = new CityPrototype(city, weatherData);
+    const continent = cityObj.getCityTimeZone();
     const eachContinentCityNumber = continentCityMap.get(continent).length;
-    const cityTime = getCityDateAndTime(weatherData[city].dateAndTime)[1].split(
-      "-"
-    )[0];
-    const isAm = getCityDateAndTime(weatherData[city].dateAndTime)[2];
-    const formattedTime = isAm ? cityTime + " AM" : cityTime + " PM";
+    const cityTime = cityObj.getCityTime().split("-")[0];
+    const session = cityObj.getCitySession();
+    const formattedTime = cityTime + " " + session;
     const cityWeather = {
       continentName: continent,
-      cityName: weatherData[city].cityName,
+      cityName: cityObj.getCityName(),
       cityTime: formattedTime,
-      cityTemperature: weatherData[city].temperature,
-      cityHumidity: weatherData[city].humidity,
+      cityTemperature: cityObj.getCityTemperature() + "°C",
+      cityHumidity: cityObj.getCityHumidity() + "%",
     };
 
     if (eachContinentCityNumber < 2) {
