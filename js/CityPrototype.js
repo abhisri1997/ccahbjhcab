@@ -1,17 +1,17 @@
-import {
-  getCityDate,
-  getCityTime,
-  getCitySession,
-} from "./getCityDateAndTime.js";
+import { getCityDate, getCityTime, getCitySession } from "./CityDateAndTime.js";
+import getWeatherData from "./WeatherData.js";
 
-function CityPrototype(cityName, data) {
-  this.cityName = data[cityName].cityName;
-  this.dateAndTime = data[cityName].dateAndTime;
-  this.timeZone = data[cityName].timeZone;
-  this.temperature = parseInt(data[cityName].temperature);
-  this.humidity = parseInt(data[cityName].humidity);
-  this.precipitation = parseInt(data[cityName].precipitation);
-  this.nextFiveHrs = data[cityName].nextFiveHrs;
+function CityPrototype(cityName) {
+  const weatherData = getWeatherData();
+  let cityObj = weatherData[cityName];
+  if (!cityObj) throw new Error(`City ${cityName} not found in weather data`);
+  this.cityName = cityObj.cityName;
+  this.dateAndTime = cityObj.dateAndTime;
+  this.timeZone = cityObj.timeZone;
+  this.temperature = parseInt(cityObj.temperature);
+  this.humidity = parseInt(cityObj.humidity);
+  this.precipitation = parseInt(cityObj.precipitation);
+  this.nextFiveHrsForecast = cityObj.nextFiveHrs;
 }
 
 CityPrototype.prototype.getCityName = function () {
@@ -47,7 +47,7 @@ CityPrototype.prototype.getCityPrecipitation = function () {
 };
 
 CityPrototype.prototype.getCityForecast = function () {
-  return this.nextFiveHrs;
+  return this.nextFiveHrsForecast;
 };
 
 export default CityPrototype;

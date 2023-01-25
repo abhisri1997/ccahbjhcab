@@ -1,5 +1,5 @@
 import getWeatherData from "./WeatherData.js";
-import { getCityDateAndTime } from "./getCityDateAndTime.js";
+import { getCityDateAndTime } from "./CityDateAndTime.js";
 import { spinnerSelector, carouselSelector } from "./index.js";
 import LiveClock from "./LiveClock.js";
 import CityPrototype from "./CityPrototype.js";
@@ -19,7 +19,7 @@ const getPrefereceWeatherDetails = (weatherType) => {
   const response = [];
 
   for (let city in weatherDetails) {
-    const cityObj = new CityPrototype(city, weatherDetails);
+    const cityObj = new CityPrototype(city);
 
     const temperatureCheck = cityObj.getCityTemperature();
     const humidityCheck = cityObj.getCityHumidity();

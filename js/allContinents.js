@@ -10,7 +10,7 @@ const getAllContinents = (weatherData) => {
   const allContinentsSet = new Set();
 
   for (let city in weatherData) {
-    const cityObj = new CityPrototype(city, weatherData);
+    const cityObj = new CityPrototype(city);
     const continent = cityObj.getCityTimeZone();
 
     allContinentsSet.add(continent);

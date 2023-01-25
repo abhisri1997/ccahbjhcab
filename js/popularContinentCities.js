@@ -1,6 +1,6 @@
 import getAllContinents from "./allContinents.js";
 import getWeatherData from "./WeatherData.js";
-import { getCityDateAndTime } from "./getCityDateAndTime.js";
+import { getCityDateAndTime } from "./CityDateAndTime.js";
 import CityPrototype from "./CityPrototype.js";
 
 /**
@@ -18,7 +18,7 @@ const getPopularContinentCities = () => {
   }
 
   for (let city in weatherData) {
-    const cityObj = new CityPrototype(city, weatherData);
+    const cityObj = new CityPrototype(city);
     const continent = cityObj.getCityTimeZone();
     const eachContinentCityNumber = continentCityMap.get(continent).length;
     const cityTime = cityObj.getCityTime().split("-")[0];
