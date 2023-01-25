@@ -29,3 +29,30 @@ export const getCityDateAndTime = (dateTime) => {
 
   return [formattedDate, formattedTime, isAM];
 };
+
+/**
+ * Takes a string in the format "dd/MM/yyyy, hh:mm:ss AM" and returns a formatted date in this format "dd/Apr/yyyy"
+ * @param {string} dateTime
+ * @returns {string}
+ */
+export const getCityDate = (dateTime) => {
+  return getCityDateAndTime(dateTime)[0];
+};
+
+/**
+ * Takes a string in the format "dd/MM/yyyy, hh:mm:ss AM" and returns a formatted time in this format "hh:mm:ss"
+ * @param {string} dateTime
+ * @returns {string}
+ */
+export const getCityTime = (dateTime) => {
+  return getCityDateAndTime(dateTime)[1];
+};
+
+/**
+ * Takes a string in the format "dd/MM/yyyy, hh:mm:ss AM" and returns session "AM/PM"
+ * @param {string} dateTime
+ * @returns {string}
+ */
+export const getCitySession = (dateTime) => {
+  return getCityDateAndTime(dateTime)[2] ? "AM" : "PM";
+};
