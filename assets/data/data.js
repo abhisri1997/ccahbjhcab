@@ -9,7 +9,7 @@ let data = {
     nextFiveHrs: ["6°C", "7°C", "11°C", "2°C", "8°C"],
   },
   newyork: {
-    cityName: "NewYork",
+    cityName: "New York",
     dateAndTime: "4/1/2020, 1:21:46 AM",
     timeZone: "America/New_york",
     temperature: "23°C",
@@ -27,7 +27,7 @@ let data = {
     nextFiveHrs: ["24°C", "27°C", "28°C", "24°C", "27°C"],
   },
   losangeles: {
-    cityName: "LosAngeles",
+    cityName: "Los Angeles",
     dateAndTime: "3/31/2020, 10:21:46 PM",
     timeZone: "America/Los_Angeles",
     temperature: "23°C",
@@ -153,7 +153,7 @@ let data = {
     nextFiveHrs: ["-1°C", "3°C", "-1°C", "-3°C", "-5°C"],
   },
   brokenhill: {
-    cityName: "BrokenHill",
+    cityName: "Broken Hill",
     dateAndTime: "4/1/2020, 3:51:46 PM",
     timeZone: "Australia/Broken_Hill",
     temperature: "10°C",
