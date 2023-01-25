@@ -3,6 +3,7 @@ import { cityInputSelector } from "./index.js";
 import { getCityDateAndTime } from "./getCityDateAndTime.js";
 import getAllCities from "./getAllCities.js";
 import LiveClock from "./LiveClock.js";
+import CityPrototype from "./CityPrototype.js";
 
 export const topSectionLiveClock = new LiveClock();
 
@@ -12,27 +13,25 @@ export const topSectionLiveClock = new LiveClock();
  * @param {string} city
  */
 export const setCityInfo = (city) => {
-  const cityName = city;
   const weatherData = getWeatherData();
+  const cityObj = new CityPrototype(city, weatherData);
+  const cityName = cityObj.getCityName();
 
-  const cityData = {
-    temperature: weatherData[cityName].temperature,
-    humidity: weatherData[cityName].humidity,
-    dateTime: weatherData[cityName].dateAndTime,
-    precipitation: weatherData[cityName].precipitation,
-    forecast: weatherData[cityName].nextFiveHrs,
-  };
+  cityInputSelector.value = cityName;
 
-  const date = getCityDateAndTime(cityData.dateTime)[0];
-  const time = getCityDateAndTime(cityData.dateTime)[1];
-  const isAM = getCityDateAndTime(cityData.dateTime)[2];
+  const date = cityObj.getCityDate();
+  const time = cityObj.getCityTime();
+  const session = cityObj.getCitySession();
+  const temp = cityObj.getCityTemperature();
+  const humidity = cityObj.getCityHumidity();
+  const precipitation = cityObj.getCityPrecipitation();
+  const forecast = cityObj.getCityForecast();
 
-  cityInputSelector.value = weatherData[cityName].cityName;
-  setCityIcon(cityName);
-  setCityTemperature(cityData.temperature);
-  setCityDateTime(date, time, isAM);
-  setCityHumidityAndPrecipitation(cityData.humidity, cityData.precipitation);
-  setForecastData(cityData.forecast, cityData.temperature);
+  setCityIcon(city);
+  setCityTemperature(temp);
+  setCityDateTime(date, time, session);
+  setCityHumidityAndPrecipitation(humidity, precipitation);
+  setForecastData(forecast, temp);
 };
 
 /**
@@ -73,7 +72,7 @@ const setCityTemperature = (cityTemperature) => {
  * @param {string} time
  * @param {string} isAM
  */
-const setCityDateTime = (date, time, isAM) => {
+const setCityDateTime = (date, time, session) => {
   const dateElement = document.getElementsByClassName("city-date")[0];
   dateElement.innerHTML = date;
 
@@ -90,7 +89,7 @@ const setCityDateTime = (date, time, isAM) => {
   const dayIcon = "./assets/Images_Icons/amState.svg";
   const nightIcon = "./assets/Images_Icons/pmState.svg";
   const isAMElement = document.getElementsByClassName("day-night-icon")[0];
-  isAMElement.src = isAM ? dayIcon : nightIcon;
+  isAMElement.src = session === "AM" ? dayIcon : nightIcon;
 };
 
 /**
