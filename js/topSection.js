@@ -52,7 +52,7 @@ const setCityIcon = (cityName) => {
  */
 const setCityTemperature = (cityTemperature) => {
   const farenheitTemperature =
-    (parseInt(cityTemperature) * (9 / 5) + 32).toFixed(1) + " F";
+    (parseInt(cityTemperature) * (9 / 5) + 32).toFixed(1) + "F";
 
   const cityCelciusTemperatureElement =
     document.getElementsByClassName("city-temp-c")[0];
