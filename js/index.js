@@ -43,10 +43,10 @@ let sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
 //IIFE for first page load.
 
 (() => {
+  setCitySelector();
   const allCities = getAllCities();
 
   setCityInfo(allCities[0]);
-  setCitySelector();
   dynamicCard("sunny");
   let sortedPopularContinentCities = sortContinentByName(true);
   const isSortedAscending = false;
@@ -65,6 +65,7 @@ cityInputSelector.addEventListener("change", (e) => {
     ".city-selector > input[type=text]"
   );
   let currentCityValue = cityInputSelector.value;
+  console.log(currentCityValue);
   const allCities = getAllCities();
 
   if (allCities.includes(currentCityValue)) {

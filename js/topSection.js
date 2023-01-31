@@ -3,7 +3,7 @@ import { cityInputSelector } from "./index.js";
 import { getCityDateAndTime } from "./CityDateAndTime.js";
 import getAllCities from "./getAllCities.js";
 import LiveClock from "./LiveClock.js";
-import CityPrototype from "./CityPrototype.js";
+import fillWeatherData from "./fillWeatherData.js";
 
 export const topSectionLiveClock = new LiveClock();
 
@@ -13,8 +13,8 @@ export const topSectionLiveClock = new LiveClock();
  * @param {string} city
  */
 export const setCityInfo = (city) => {
-  const weatherData = getWeatherData();
-  const cityObj = new CityPrototype(city);
+  const allCity = fillWeatherData();
+  const cityObj = allCity.getCity(city);
   const cityName = cityObj.getCityName();
 
   cityInputSelector.value = cityName;
@@ -25,7 +25,7 @@ export const setCityInfo = (city) => {
   const temp = cityObj.getCityTemperature();
   const humidity = cityObj.getCityHumidity();
   const precipitation = cityObj.getCityPrecipitation();
-  const forecast = cityObj.getCityForecast();
+  const forecast = allCity.getCityForecast(city);
 
   setCityIcon(city);
   setCityTemperature(temp);

@@ -1,4 +1,4 @@
-import CityPrototype from "./CityPrototype.js";
+import fillWeatherData from "./fillWeatherData.js";
 
 /**
  * It takes object as an argument and returns a set of all continents
@@ -10,7 +10,8 @@ const getAllContinents = (weatherData) => {
   const allContinentsSet = new Set();
 
   for (let city in weatherData) {
-    const cityObj = new CityPrototype(city);
+    const allCity = fillWeatherData();
+    const cityObj = allCity.getCity(city);
     const continent = cityObj.getCityTimeZone();
 
     allContinentsSet.add(continent);

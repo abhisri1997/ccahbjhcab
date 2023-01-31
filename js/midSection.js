@@ -2,7 +2,7 @@ import getWeatherData from "./WeatherData.js";
 import { getCityDateAndTime } from "./CityDateAndTime.js";
 import { spinnerSelector, carouselSelector } from "./index.js";
 import LiveClock from "./LiveClock.js";
-import CityPrototype from "./CityPrototype.js";
+import fillWeatherData from "./fillWeatherData.js";
 
 let activePreferenceIconSelector = document.querySelectorAll(
   ".active > .icons > img"
@@ -15,15 +15,15 @@ let activePreferenceIconSelector = document.querySelectorAll(
  * @return {[]}
  */
 const getPrefereceWeatherDetails = (weatherType) => {
-  const weatherDetails = getWeatherData();
+  const allCity = fillWeatherData();
+  const weatherDetails = allCity.cities;
+  console.log(weatherDetails);
   const response = [];
 
-  for (let city in weatherDetails) {
-    const cityObj = new CityPrototype(city);
-
-    const temperatureCheck = cityObj.getCityTemperature();
-    const humidityCheck = cityObj.getCityHumidity();
-    const precipitationCheck = cityObj.getCityPrecipitation();
+  weatherDetails.forEach((city) => {
+    const temperatureCheck = city.getCityTemperature();
+    const humidityCheck = city.getCityHumidity();
+    const precipitationCheck = city.getCityPrecipitation();
 
     if (
       weatherConditionCheck(
@@ -33,10 +33,30 @@ const getPrefereceWeatherDetails = (weatherType) => {
         precipitationCheck
       )
     ) {
-      response.push(weatherDetails[city]);
+      response.push(city);
     }
-  }
+  });
 
+  // for (let city in weatherDetails) {
+  //   console.log(city);
+  //   const cityObj = city;
+
+  //   const temperatureCheck = cityObj.getCityTemperature();
+  //   const humidityCheck = cityObj.getCityHumidity();
+  //   const precipitationCheck = cityObj.getCityPrecipitation();
+
+  //   if (
+  //     weatherConditionCheck(
+  //       weatherType,
+  //       temperatureCheck,
+  //       humidityCheck,
+  //       precipitationCheck
+  //     )
+  //   ) {
+  //     response.push(cityObj);
+  //   }
+  // }
+  console.log(response);
   return response;
 };
 /**
@@ -97,6 +117,7 @@ export const dynamicCard = (weatherType = "sunny") => {
   );
   const preferredWeatherCityDeatils = getPrefereceWeatherDetails(weatherType);
   const preferredWeatherCities = preferredWeatherCityDeatils.length;
+  console.log(preferredWeatherCities);
   const numberOfCards = Math.min(
     Math.min(preferredWeatherCities, spinnerSelector.value),
     10
@@ -108,15 +129,16 @@ export const dynamicCard = (weatherType = "sunny") => {
   for (let i = 0; i < numberOfCards; i++) {
     const city_name = preferredWeatherCityDeatils[i].cityName;
     const date_time = getCityDateAndTime(
-      preferredWeatherCityDeatils[i].dateAndTime
+      preferredWeatherCityDeatils[i].cityDateAndTime
     );
-    const city_time = `${date_time[1].split("-")[0]} ${
-      date_time[2] ? "AM" : "PM"
-    }`;
+    const city_time =
+      preferredWeatherCityDeatils[i].getCityTime().split("-")[0] +
+      " " +
+      preferredWeatherCityDeatils[i].getCitySession();
     const city_date = date_time[0];
-    const city_humidity = preferredWeatherCityDeatils[i].humidity;
-    const city_temp = preferredWeatherCityDeatils[i].temperature;
-    const city_precipitation = preferredWeatherCityDeatils[i].precipitation;
+    const city_humidity = preferredWeatherCityDeatils[i].cityHumidity;
+    const city_temp = preferredWeatherCityDeatils[i].cityTemp;
+    const city_precipitation = preferredWeatherCityDeatils[i].cityPrecipitation;
     const weatherType = activePreferenceIconSelector[0].alt.split(" ")[0];
 
     let weatherTypeIcon;
@@ -183,7 +205,7 @@ export const dynamicCard = (weatherType = "sunny") => {
     const currentCardID = `mid-section-time-${i + 1}`;
     const currentCardTimeElement = document.querySelector(`#${currentCardID}`);
     const currentTime =
-      currentCardTimeElement.innerHTML.split(" ")[0] + ":" + "58";
+      currentCardTimeElement.innerHTML.split(" ")[0] + ":" + "00";
 
     const midSectionLiveClock = new LiveClock();
     midSectionLiveClock.liveClock(currentTime, currentCardTimeElement);
