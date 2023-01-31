@@ -65,7 +65,6 @@ cityInputSelector.addEventListener("change", (e) => {
     ".city-selector > input[type=text]"
   );
   let currentCityValue = cityInputSelector.value;
-  console.log(currentCityValue);
   const allCities = getAllCities();
 
   if (allCities.includes(currentCityValue)) {
