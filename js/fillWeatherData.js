@@ -2,6 +2,11 @@ import getWeatherData from "./WeatherData.js";
 import City from "./City.js";
 import Cities from "./Cities.js";
 
+/**
+ * Fetches the data from the API and fills Data in cities object
+ *
+ * @return {Object} Cities object
+ */
 const fillWeatherData = () => {
   const data = getWeatherData();
   const allCities = [];
