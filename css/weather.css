@@ -18,7 +18,7 @@ body {
   background-image: url(./../assets/Images_Icons/background.svg);
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.6);
-  background-blend-mode: darken;
+  background-blend-mode: darken; /* Mix background image with the color */
   background-repeat: no-repeat;
 }
 
@@ -232,7 +232,7 @@ body {
 .preference-icon {
   position: relative;
 }
-
+/* For underline effect under the weather icons in mid section */
 .icons::after {
   content: "";
   position: absolute;
@@ -243,11 +243,13 @@ body {
   background-color: skyblue;
 }
 
+/* Display the underline by changing width */
 .preference-icon:hover .icons::after {
   width: 100%;
   left: 0;
 }
 
+/* Display the underline by changing width */
 .active .icons::after {
   width: 100%;
   left: 0;
@@ -321,7 +323,7 @@ body {
   background-color: var(--bg-dark-grey-tile);
   background-image: url("./../assets/CityIcons/london.svg");
   background-size: 60%;
-  background-position: calc(100% - 10px) calc(100% - 5px);
+  background-position: calc(100% - 10px) calc(100% - 5px); /* Use to position the background image */
   background-repeat: no-repeat;
   background-blend-mode: screen;
   height: 20vmax;
@@ -433,7 +435,6 @@ body {
 }
 
 .continent-card {
-  /* gap: 1rem; */
   justify-content: space-between;
 }
 
@@ -458,11 +459,6 @@ body {
     flex-wrap: wrap;
     min-width: 47%;
   }
-
-  /* .card-3,
-  .card-4 {
-    display: none;
-  } */
 
   .left-arrow,
   .right-arrow {
