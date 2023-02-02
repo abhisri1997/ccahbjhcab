@@ -10,7 +10,6 @@ class Cities extends City {
   constructor(cities) {
     super();
     this.cities = cities ? cities : [];
-    this.cityNextFiveHrsForecast = "";
   }
   getCity(cityValue) {
     return this.cities.find((city) => city.cityValue === cityValue);

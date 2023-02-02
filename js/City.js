@@ -29,6 +29,7 @@ class City {
     this.cityPrecipitation = cityPrecipitation;
     this.cityContinent = cityContinent;
     this.cityDateAndTime = cityDateAndTime;
+    this.cityNextFiveHrsForecast = "";
   }
 
   /**
