@@ -94,6 +94,19 @@ class City {
   getCityPrecipitation() {
     return this.cityPrecipitation ? parseInt(this.cityPrecipitation) : "";
   }
+
+  setCityForecast(cityValue) {
+    const data = getWeatherData();
+    const cityObj = data[cityValue];
+    this.cityNextFiveHrsForecast = cityObj.nextFiveHrs;
+  }
+
+  getCityForecast(cityValue) {
+    if (!this.cityNextFiveHrsForecast) {
+      this.setCityForecast(cityValue);
+    }
+    return this.cityNextFiveHrsForecast;
+  }
 }
 
 export default City;
