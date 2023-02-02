@@ -1,4 +1,5 @@
 import { getCityDate, getCityTime, getCitySession } from "./CityDateAndTime.js";
+import getWeatherData from "./WeatherData.js";
 
 /**
  * City constructor function takes city information as parameters
@@ -27,6 +28,7 @@ function City(
   this.cityPrecipitation = cityPrecipitation;
   this.cityContinent = cityContinent;
   this.cityDateAndTime = cityDateAndTime;
+  this.cityNextFiveHrsForecast = "";
 }
 
 /**
@@ -91,6 +93,19 @@ City.prototype.getCityHumidity = function () {
  */
 City.prototype.getCityPrecipitation = function () {
   return this.cityPrecipitation ? parseInt(this.cityPrecipitation) : "";
+};
+
+City.prototype.setCityForecast = function (cityValue) {
+  const data = getWeatherData();
+  const cityObj = data[cityValue];
+  this.cityNextFiveHrsForecast = cityObj.nextFiveHrs;
+};
+
+City.prototype.getCityForecast = function (cityValue) {
+  if (!this.cityNextFiveHrsForecast) {
+    this.setCityForecast(cityValue);
+  }
+  return this.cityNextFiveHrsForecast;
 };
 
 export default City;

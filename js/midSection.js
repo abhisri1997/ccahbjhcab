@@ -17,7 +17,6 @@ let activePreferenceIconSelector = document.querySelectorAll(
 const getPrefereceWeatherDetails = (weatherType) => {
   const allCity = fillWeatherData();
   const weatherDetails = allCity.cities;
-  console.log(weatherDetails);
   const response = [];
 
   weatherDetails.forEach((city) => {
@@ -37,26 +36,6 @@ const getPrefereceWeatherDetails = (weatherType) => {
     }
   });
 
-  // for (let city in weatherDetails) {
-  //   console.log(city);
-  //   const cityObj = city;
-
-  //   const temperatureCheck = cityObj.getCityTemperature();
-  //   const humidityCheck = cityObj.getCityHumidity();
-  //   const precipitationCheck = cityObj.getCityPrecipitation();
-
-  //   if (
-  //     weatherConditionCheck(
-  //       weatherType,
-  //       temperatureCheck,
-  //       humidityCheck,
-  //       precipitationCheck
-  //     )
-  //   ) {
-  //     response.push(cityObj);
-  //   }
-  // }
-  console.log(response);
   return response;
 };
 /**
@@ -117,7 +96,6 @@ export const dynamicCard = (weatherType = "sunny") => {
   );
   const preferredWeatherCityDeatils = getPrefereceWeatherDetails(weatherType);
   const preferredWeatherCities = preferredWeatherCityDeatils.length;
-  console.log(preferredWeatherCities);
   const numberOfCards = Math.min(
     Math.min(preferredWeatherCities, spinnerSelector.value),
     10
