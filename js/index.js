@@ -40,22 +40,48 @@ let sortContinetByContinentNameSelector = document.querySelector(
 
 let sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
 
+const loadingSelector = document.querySelector(".loading");
+
+const containerSelector = document.querySelector(".container");
+
+/**
+ * Starts the screen loading animation
+ *
+ */
+function startLoading() {
+  containerSelector.style.display = "none";
+}
+
+/**
+ * Stops the screen loading animation
+ *
+ */
+function stopLoading() {
+  setTimeout(() => {
+    loadingSelector.remove();
+    containerSelector.style.display = "block";
+  }, 1000);
+}
+
 //IIFE for first page load.
 
 (async () => {
-  setCitySelector();
-  const allCities = await getAllCities();
+  startLoading();
 
-  await setCityInfo(allCities[0]);
-  await dynamicCard("sunny");
-  let sortedPopularContinentCities = await sortContinentByName(true);
+  const allCities = await getAllCities();
   const isSortedAscending = false;
+  let sortedPopularContinentCities = await sortContinentByName(true);
   sortedPopularContinentCities = await sortContinentByTemperature(
     sortedPopularContinentCities,
     isSortedAscending
   );
 
-  await dynamicContinentCard(sortedPopularContinentCities);
+  setCitySelector();
+  setCityInfo(allCities[0]);
+  dynamicCard("sunny");
+  dynamicContinentCard(sortedPopularContinentCities);
+
+  stopLoading();
 })();
 
 // On Input change event listener for top section when city name changes
