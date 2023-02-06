@@ -1,4 +1,3 @@
-import getWeatherData from "./WeatherData.js";
 import { getCityDateAndTime } from "./CityDateAndTime.js";
 import { spinnerSelector, carouselSelector } from "./index.js";
 import LiveClock from "./LiveClock.js";
