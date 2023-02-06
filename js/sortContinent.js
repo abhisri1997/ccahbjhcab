@@ -6,8 +6,8 @@ import getPopularContinentCities from "./popularContinentCities.js";
  * @param {boolean} ascendingSort - boolean value to sort the output ascending or descending
  * @return {Map<String, [Object]>} Sorted Map
  */
-export const sortContinentByName = (ascendingSort) => {
-  const popularContinentDetails = getPopularContinentCities();
+export const sortContinentByName = async (ascendingSort) => {
+  const popularContinentDetails = await getPopularContinentCities();
   let sortedMap = new Map();
   const sortedArray = Array.from(popularContinentDetails).sort((a, b) => {
     if (ascendingSort) {
@@ -30,7 +30,10 @@ export const sortContinentByName = (ascendingSort) => {
  * @param {boolean} ascendingSort - boolean value to sort the output ascending or descending
  * @return {Map<string, [Object]>}  Sorted Map
  */
-export const sortContinentByTemperature = (weatherData, ascendingSort) => {
+export const sortContinentByTemperature = async (
+  weatherData,
+  ascendingSort
+) => {
   let sortedMap = new Map();
 
   let mapToArray = Array.from(weatherData);

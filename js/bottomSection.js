@@ -7,9 +7,10 @@ import LiveClock from "./LiveClock.js";
  * @param {Map<string, [Object]} popularContinentDetails - Map of continents and it's popular cities
  * @returns {null}
  */
-export const dynamicContinentCard = (popularContinentDetails) => {
+export const dynamicContinentCard = async (data) => {
   let continentCardHTML = "";
   let counter = 0;
+  const popularContinentDetails = await data;
 
   for (let [key, value] of popularContinentDetails.entries()) {
     value.forEach((continentCity) => {

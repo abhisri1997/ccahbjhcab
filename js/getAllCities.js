@@ -5,13 +5,14 @@ import getWeatherData from "./WeatherData.js";
  *
  * @return {Array} Array of cities
  */
-const getAllCities = () => {
-  const weatherData = getWeatherData();
+const getAllCities = async () => {
+  const weatherData = await getWeatherData();
   const allCities = [];
 
-  for (let city in weatherData) {
-    allCities.push(city);
-  }
+  weatherData.forEach((cityObj) => {
+    const cityName = cityObj.cityName;
+    allCities.push(cityName);
+  });
 
   allCities.sort();
 

@@ -42,30 +42,30 @@ let sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
 
 //IIFE for first page load.
 
-(() => {
+(async () => {
   setCitySelector();
-  const allCities = getAllCities();
+  const allCities = await getAllCities();
 
-  setCityInfo(allCities[0]);
-  dynamicCard("sunny");
-  let sortedPopularContinentCities = sortContinentByName(true);
+  await setCityInfo(allCities[0]);
+  await dynamicCard("sunny");
+  let sortedPopularContinentCities = await sortContinentByName(true);
   const isSortedAscending = false;
-  sortedPopularContinentCities = sortContinentByTemperature(
+  sortedPopularContinentCities = await sortContinentByTemperature(
     sortedPopularContinentCities,
     isSortedAscending
   );
 
-  dynamicContinentCard(sortedPopularContinentCities);
+  await dynamicContinentCard(sortedPopularContinentCities);
 })();
 
 // On Input change event listener for top section when city name changes
 
-cityInputSelector.addEventListener("change", (e) => {
+cityInputSelector.addEventListener("change", async (e) => {
   cityInputSelector = document.querySelector(
     ".city-selector > input[type=text]"
   );
   let currentCityValue = cityInputSelector.value;
-  const allCities = getAllCities();
+  const allCities = await getAllCities();
 
   if (allCities.includes(currentCityValue)) {
     topSectionLiveClock.clearLiveClock();
@@ -116,7 +116,7 @@ rightArrowSelector.addEventListener("click", carouselSlider);
 
 // Event listener to handle sorting of continent cards based on continent name
 
-sortContinetByContinentNameSelector.addEventListener("click", (e) => {
+sortContinetByContinentNameSelector.addEventListener("click", async (e) => {
   e.preventDefault();
   let ascendingSort =
     e.target.nextElementSibling.alt === "sort_up" ? true : false;
@@ -131,7 +131,7 @@ sortContinetByContinentNameSelector.addEventListener("click", (e) => {
     ascendingSort = true;
   }
 
-  let sortedMap = sortContinentByName(ascendingSort);
+  let sortedMap = await sortContinentByName(ascendingSort);
   sortByContinentTemperatureSelector = document.querySelector(".sort-temp");
   const continentAscendingTempSort =
     sortByContinentTemperatureSelector.querySelector("img").alt === "sort_up"
@@ -143,7 +143,7 @@ sortContinetByContinentNameSelector.addEventListener("click", (e) => {
 
 // Event listener to handle sorting of continent cards based on continent city temperature
 
-sortByContinentTemperatureSelector.addEventListener("click", (e) => {
+sortByContinentTemperatureSelector.addEventListener("click", async (e) => {
   e.preventDefault();
   let ascendingSort =
     e.target.nextElementSibling.alt === "sort_up" ? true : false;
@@ -164,7 +164,7 @@ sortByContinentTemperatureSelector.addEventListener("click", (e) => {
     sortContinetByContinentNameSelector.querySelector("img").alt === "sort_up"
       ? true
       : false;
-  let sortedMap = sortContinentByName(continentAscendingContinentSort);
+  let sortedMap = await sortContinentByName(continentAscendingContinentSort);
   sortedMap = sortContinentByTemperature(sortedMap, ascendingSort);
   dynamicContinentCard(sortedMap);
 });

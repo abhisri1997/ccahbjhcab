@@ -7,14 +7,12 @@ import Cities from "./Cities.js";
  *
  * @return {Object} Cities object
  */
-const fillWeatherData = () => {
-  const data = getWeatherData();
+const fillWeatherData = async () => {
+  const data = await getWeatherData();
   const allCities = [];
 
-  for (let key in data) {
-    const cityObj = data[key];
+  data.forEach((cityObj) => {
     const cityName = cityObj.cityName;
-    const cityValue = key;
     const cityHumidity = cityObj.humidity;
     const cityTemp = cityObj.temperature;
     const cityPrecipitation = cityObj.precipitation;
@@ -22,7 +20,6 @@ const fillWeatherData = () => {
     const cityDateAndTime = cityObj.dateAndTime;
 
     const city = new City(
-      cityValue,
       cityName,
       cityHumidity,
       cityTemp,
@@ -31,7 +28,7 @@ const fillWeatherData = () => {
       cityDateAndTime
     );
     allCities.push(city);
-  }
+  });
 
   const cities = new Cities(allCities);
 

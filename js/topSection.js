@@ -12,8 +12,8 @@ export const topSectionLiveClock = new LiveClock();
  *
  * @param {string} city
  */
-export const setCityInfo = (city) => {
-  const allCity = fillWeatherData();
+export const setCityInfo = async (city) => {
+  const allCity = await fillWeatherData();
   const cityObj = allCity.getCity(city);
   const cityName = cityObj.getCityName();
 
@@ -25,7 +25,8 @@ export const setCityInfo = (city) => {
   const temp = cityObj.getCityTemperature();
   const humidity = cityObj.getCityHumidity();
   const precipitation = cityObj.getCityPrecipitation();
-  const forecast = allCity.getCityForecast(city);
+  const forecast = await allCity.getCityForecast(city);
+  console.log(forecast);
 
   setCityIcon(city);
   setCityTemperature(temp);
@@ -168,16 +169,13 @@ const setCityHumidityAndPrecipitation = (humidity, precipitation) => {
  * Sets the input selector data from the api for top Section of UI
  *
  */
-export const setCitySelector = () => {
-  const weatherData = getWeatherData();
-  const allCities = getAllCities();
-
+export const setCitySelector = async () => {
+  const allCities = await getAllCities();
   const city_selector = document.getElementById("cityName");
   let options = "";
 
-  for (let city of allCities) {
-    options += `<option value="${city}">${weatherData[city].cityName}</option>`;
+  for (let i = 0; i < allCities.length; i++) {
+    options += `<option value="${allCities[i]}">${allCities[i]}</option>`;
   }
-
   city_selector.innerHTML = options;
 };

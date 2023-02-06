@@ -11,8 +11,8 @@ class Cities extends City {
     super();
     this.cities = cities ? cities : [];
   }
-  getCity(cityValue) {
-    return this.cities.find((city) => city.cityValue === cityValue);
+  getCity(cityName) {
+    return this.cities.find((city) => city.cityName === cityName);
   }
   addCity(city) {
     this.cities.push(city);

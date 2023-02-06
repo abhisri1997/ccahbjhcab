@@ -13,8 +13,8 @@ let activePreferenceIconSelector = document.querySelectorAll(
  * @param {string} weatherType - Type of weather
  * @return {[]}
  */
-const getPrefereceWeatherDetails = (weatherType) => {
-  const allCity = fillWeatherData();
+const getPrefereceWeatherDetails = async (weatherType) => {
+  const allCity = await fillWeatherData();
   const weatherDetails = allCity.cities;
   const response = [];
 
@@ -89,11 +89,13 @@ const weatherConditionCheck = (
  * @param {string} [weatherType="sunny"] - Weather condition, default is "sunny"
  * @returns {null}
  */
-export const dynamicCard = (weatherType = "sunny") => {
+export const dynamicCard = async (weatherType = "sunny") => {
   activePreferenceIconSelector = document.querySelectorAll(
     ".active > .icons > img"
   );
-  const preferredWeatherCityDeatils = getPrefereceWeatherDetails(weatherType);
+  const preferredWeatherCityDeatils = await getPrefereceWeatherDetails(
+    weatherType
+  );
   const preferredWeatherCities = preferredWeatherCityDeatils.length;
   const numberOfCards = Math.min(
     Math.min(preferredWeatherCities, spinnerSelector.value),

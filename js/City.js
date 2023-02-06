@@ -14,7 +14,6 @@ import getWeatherData from "./WeatherData.js";
  */
 class City {
   constructor(
-    cityValue,
     cityName,
     cityHumidity,
     cityTemp,
@@ -22,7 +21,6 @@ class City {
     cityContinent,
     cityDateAndTime
   ) {
-    this.cityValue = cityValue;
     this.cityName = cityName;
     this.cityTemp = cityTemp;
     this.cityHumidity = cityHumidity;
@@ -96,15 +94,35 @@ class City {
     return this.cityPrecipitation ? parseInt(this.cityPrecipitation) : "";
   }
 
-  setCityForecast(cityValue) {
-    const data = getWeatherData();
-    const cityObj = data[cityValue];
-    this.cityNextFiveHrsForecast = cityObj.nextFiveHrs;
+  async setCityForecast(cityName) {
+    const url = "https://soliton.glitch.me/hourly-forecast";
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const cityObj = this.cities.find((city) => city.cityName === cityName);
+    const city_Date_Time_Name = `${cityObj.cityDateAndTime}, ${cityObj.cityName}`;
+    const raw = JSON.stringify({
+      city_Date_Time_Name,
+      hours: 6,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    const apiResponse = await fetch(
+      "https://soliton.glitch.me/hourly-forecast",
+      requestOptions
+    );
+    const weatherForecast = await apiResponse.json();
+    this.cityNextFiveHrsForecast = weatherForecast.temperature;
   }
 
-  getCityForecast(cityValue) {
+  async getCityForecast(cityName) {
     if (!this.cityNextFiveHrsForecast) {
-      this.setCityForecast(cityValue);
+      await this.setCityForecast(cityName);
     }
     return this.cityNextFiveHrsForecast;
   }
