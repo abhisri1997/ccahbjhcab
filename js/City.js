@@ -95,7 +95,7 @@ class City {
   }
 
   async setCityForecast(cityName) {
-    const url = "https://soliton.glitch.me/hourly-forecast";
+    const url = "http://127.0.0.1:3000/hourly-forecast";
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const cityObj = this.cities.find((city) => city.cityName === cityName);
@@ -112,10 +112,7 @@ class City {
       redirect: "follow",
     };
 
-    const apiResponse = await fetch(
-      "https://soliton.glitch.me/hourly-forecast",
-      requestOptions
-    );
+    const apiResponse = await fetch(url, requestOptions);
     const weatherForecast = await apiResponse.json();
     this.cityNextFiveHrsForecast = weatherForecast.temperature;
   }
