@@ -1,25 +1,30 @@
-const http = require("http");
+const express = require("express");
 const path = require("path");
+const app = express();
+const bodyParser = require("body-parser");
 const serveStatic = require("./serveStatic");
 const serveHourlyForecast = require("./serveHourlyForecast");
 const serveAllCityWeather = require("./serveAllCityWeather");
 const serveOneCity = require("./serveOneCity");
 
-const url = require("url");
 const PORT = process.env.PORT || 3000;
-
-http
-  .createServer((request, response) => {
-    if (request.url === "/hourly-forecast") {
-      serveHourlyForecast(request, response);
-    } else if (request.url === "/all-timezone-cities") {
-      serveAllCityWeather(request, response);
-    } else if (request.url.split("=")[0] === "/?city") {
-      serveOneCity(request, response);
+const staticPath = path.join(__dirname, "..");
+app.use(bodyParser.json());
+app.use(
+  "/",
+  (req, res, next) => {
+    if (req.query.city) {
+      serveOneCity(req, res);
     } else {
-      serveStatic(request, response);
+      next();
     }
-  })
-  .listen(PORT);
+  },
+  express.static(staticPath)
+);
+
+app.post("/hourly-forecast", serveHourlyForecast);
+app.get("/all-timezone-cities", serveAllCityWeather);
+
+app.listen(PORT);
 
 console.log(`Server running at http://127.0.0.1:${PORT}/`);

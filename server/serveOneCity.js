@@ -3,8 +3,7 @@ const { timeForOneCity } = require("./timeZone");
 
 function serveOneCity(request, response) {
   try {
-    const query = url.parse(request.url, true).query;
-    const city = query.city;
+    const city = request.query.city;
     const output = JSON.stringify(timeForOneCity(city));
     response.writeHead(200, { "Content-Type": "application/json" });
     response.end(output);
