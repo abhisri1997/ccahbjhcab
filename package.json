@@ -3,11 +3,11 @@
     "body-parser": "^1.20.1",
     "express": "^4.18.2",
     "normalize.css": "^8.0.1",
-    "serverless-http": "^3.1.1",
     "weatherforecastpackage": "^1.0.7"
   },
   "scripts": {
-    "test": "nodemon ./server/app.js"
+    "test": "nodemon ./server/app.js",
+    "start": "node ./server/app.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
