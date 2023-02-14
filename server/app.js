@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const serveHourlyForecast = require("./serveHourlyForecast");
 const serveAllCityWeather = require("./serveAllCityWeather");
 const serveOneCity = require("./serveOneCity");
-
+const HOST = process.env.HOST || "http://127.0.0.1";
 const PORT = process.env.PORT || 3000;
 const staticPath = path.join(__dirname, "..");
 app.use(bodyParser.json());
@@ -27,4 +27,4 @@ app.get("/all-timezone-cities", serveAllCityWeather);
 
 app.listen(PORT);
 
-console.log(`Server running at http://127.0.0.1:${PORT}/`);
+console.log(`Server running at ${HOST}:${PORT}`);
