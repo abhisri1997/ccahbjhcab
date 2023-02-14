@@ -1,8 +1,8 @@
 const express = require("express");
+const weatherForecast = require("weatherforecastpackage");
 const path = require("path");
 const app = express();
 const bodyParser = require("body-parser");
-const serveStatic = require("./serveStatic");
 const serveHourlyForecast = require("./serveHourlyForecast");
 const serveAllCityWeather = require("./serveAllCityWeather");
 const serveOneCity = require("./serveOneCity");
@@ -22,7 +22,7 @@ app.use(
   express.static(staticPath)
 );
 
-app.post("/hourly-forecast", serveHourlyForecast);
+app.post("/hourly-forecast", weatherForecast);
 app.get("/all-timezone-cities", serveAllCityWeather);
 
 app.listen(PORT);
