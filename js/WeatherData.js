@@ -6,7 +6,8 @@
  * @return {json} JSON representation
  */
 const getWeatherData = async () => {
-  const apiResponse = await fetch("http://127.0.0.1:3000/all-timezone-cities");
+  const base = `${location.protocol}//${location.host}`;
+  const apiResponse = await fetch(`${base}/all-timezone-cities`);
   const data = await apiResponse.json();
   return data;
 };
