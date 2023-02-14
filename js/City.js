@@ -95,7 +95,8 @@ class City {
   }
 
   async setCityForecast(cityName) {
-    const url = "http://127.0.0.1:3000/hourly-forecast";
+    const base = `${location.protocol}//${location.host}`;
+    const url = `${base}/hourly-forecast`;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const cityObj = this.cities.find((city) => city.cityName === cityName);
