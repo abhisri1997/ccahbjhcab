@@ -8,7 +8,7 @@ const serveAllCityWeather = require("./serveAllCityWeather");
 const serveOneCity = require("./serveOneCity");
 const HOST = process.env.HOST || "http://127.0.0.1";
 const PORT = process.env.PORT || 3000;
-const staticPath = path.join(__dirname, "..");
+const staticPath = path.join(__dirname, "../public");
 app.use(bodyParser.json());
 app.use(
   "/",
