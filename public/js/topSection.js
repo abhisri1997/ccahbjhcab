@@ -42,7 +42,7 @@ export const setCityInfo = async (city) => {
  */
 const setCityIcon = (cityName) => {
   const cityIconElement = document.getElementsByClassName("city-icon")[0];
-  const iconLocation = `./assets/CityIcons/${cityName}.svg`;
+  const iconLocation = `./assets/CityIcons/${cityName.toLowerCase()}.svg`;
   cityIconElement.src = iconLocation;
 };
 
