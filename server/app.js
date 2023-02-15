@@ -1,15 +1,20 @@
 const express = require("express");
-const weatherForecast = require("weatherforecastpackage");
-const path = require("path");
-const app = express();
 const bodyParser = require("body-parser");
-const serveHourlyForecast = require("./serveHourlyForecast");
-const serveAllCityWeather = require("./serveAllCityWeather");
-const serveOneCity = require("./serveOneCity");
+const path = require("path");
+const {
+  serveAllCityWeather,
+  serveHourlyForecast,
+  serveOneCity,
+} = require("weatherforecastpackage");
+
+const app = express();
 const HOST = process.env.HOST || "http://127.0.0.1";
 const PORT = process.env.PORT || 3000;
 const staticPath = path.join(__dirname, "../public");
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
   "/",
   (req, res, next) => {
@@ -22,9 +27,7 @@ app.use(
   express.static(staticPath)
 );
 
-app.post("/hourly-forecast", weatherForecast);
+app.post("/hourly-forecast", serveHourlyForecast);
 app.get("/all-timezone-cities", serveAllCityWeather);
 
-app.listen(PORT);
-
-console.log(`Server running at ${HOST}:${PORT}`);
+app.listen(PORT, () => console.log(`Server running at ${HOST}:${PORT}`));
