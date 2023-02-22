@@ -1,14 +1,17 @@
-const { allTimeZones, nextNhoursWeather } = require("./timeZone");
+const { fork } = require("child_process");
+const path = require("path");
 
 const serveHourlyForecast = (request, response) => {
   const jsonData = request.body;
-  const { city_Date_Time_Name, hours } = jsonData;
-  const weatherData = allTimeZones();
-  const output = JSON.stringify(
-    nextNhoursWeather(city_Date_Time_Name, hours, weatherData)
-  );
-  response.writeHead(200, { "Content-Type": "application/json" });
-  response.end(output);
+
+  const childFileLocation = path.join(__dirname, "getHourlyForecast.js");
+  const child = fork(childFileLocation);
+
+  child.send(jsonData);
+  child.on("message", (data) => {
+    response.writeHead(200, { "Content-Type": "application/json" });
+    response.end(data);
+  });
 };
 
 module.exports = serveHourlyForecast;

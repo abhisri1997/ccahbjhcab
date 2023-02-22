@@ -40,7 +40,7 @@ const getPopularContinentCities = async () => {
       continentCityMap.set(continent, currentContinent);
     }
   });
-  console.log(continentCityMap);
+
   return continentCityMap;
 };
 

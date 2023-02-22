@@ -1,11 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const {
-  serveAllCityWeather,
-  serveHourlyForecast,
-  serveOneCity,
-} = require("weatherforecastpackage");
+const serveOneCity = require("./serveOneCity");
+const serveHourlyForecast = require("./serveHourlyForecast");
+const serveAllCityWeather = require("./serveAllCityWeather");
 
 const app = express();
 const HOST = process.env.HOST || "http://127.0.0.1";

@@ -26,7 +26,6 @@ export const setCityInfo = async (city) => {
   const humidity = cityObj.getCityHumidity();
   const precipitation = cityObj.getCityPrecipitation();
   const forecast = await allCity.getCityForecast(city);
-  console.log(forecast);
 
   setCityIcon(city);
   setCityTemperature(temp);
